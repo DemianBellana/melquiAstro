@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Saffron Morriz Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --dark: #1a1714;
+    --mid: #5a5248;
+    --light: #9e9088;
+    --accent: #b08d6a;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--warm-white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(160,140,120,0.12);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--dark);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--dark); }
+
+  /* ─── HERO ─── */
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(20,17,14,0.18) 0%, rgba(20,17,14,0.42) 100%),
+      url('https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?w=1800&auto=format&fit=crop&q=80') center center / cover no-repeat;
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    padding: 0 1rem;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 1.4rem;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.08;
+    margin-bottom: 1.6rem;
+    animation: fadeUp 1s ease 0.15s both;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 200;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    animation: fadeUp 1s ease 0.3s both;
+    margin-bottom: 2.8rem;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.55);
+    padding: 0.9rem 2.4rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: fadeUp 1s ease 0.45s both;
+  }
+
+  .hero-cta:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.8);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeUp 1s ease 0.7s both;
+  }
+
+  .hero-scroll span {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollDown 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollDown {
+    0%, 100% { transform: scaleY(1); opacity: 0.6; }
+    50% { transform: scaleY(1.3); opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── INTRO ─── */
+  .intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+  }
+
+  .intro-image {
+    background: url('https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1000&auto=format&fit=crop&q=80') center center / cover;
+  }
+
+  .intro-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 5rem;
+    background: var(--cream);
+  }
+
+  .section-label {
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.4rem;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.18;
+    color: var(--dark);
+    margin-bottom: 1.6rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+  }
+
+  .section-body {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--mid);
+    max-width: 42ch;
+    margin-bottom: 2.2rem;
+  }
+
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dark);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 0.2rem;
+    transition: all 0.2s;
+  }
+
+  .link-arrow:hover { color: var(--accent); }
+  .link-arrow::after { content: '→'; transition: transform 0.2s; }
+  .link-arrow:hover::after { transform: translateX(4px); }
+
+  /* ─── GALLERY GRID ─── */
+  .gallery-section {
+    padding: 6rem 4rem;
+    background: var(--warm-white);
+  }
+
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 0.6rem;
+  }
+
+  .gallery-item {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 16/10; }
+  .gallery-item:nth-child(2) { aspect-ratio: 3/4; }
+  .gallery-item:nth-child(3) { aspect-ratio: 3/4; }
+  .gallery-item:nth-child(4) { aspect-ratio: 3/4; }
+  .gallery-item:nth-child(5) { grid-column: span 2; aspect-ratio: 16/10; }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+    filter: brightness(0.97) saturate(0.92);
+  }
+
+  .gallery-item:hover img { transform: scale(1.04); }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20,17,14,0);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    transition: background 0.3s ease;
+  }
+
+  .gallery-item:hover .gallery-overlay { background: rgba(20,17,14,0.28); }
+
+  .gallery-caption {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-style: italic;
+    color: rgba(255,255,255,0);
+    font-weight: 300;
+    transition: color 0.3s ease;
+  }
+
+  .gallery-item:hover .gallery-caption { color: rgba(255,255,255,0.9); }
+
+  .gallery-cta-wrap {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  /* ─── ABOUT STRIP ─── */
+  .about-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 75vh;
+    background: var(--dark);
+  }
+
+  .about-image {
+    background: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=900&auto=format&fit=crop&q=80') center top / cover;
+    filter: brightness(0.85) saturate(0.8);
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 5rem;
+    color: #fff;
+  }
+
+  .about-text .section-label { color: var(--accent); }
+
+  .about-text .section-title { color: #fff; }
+
+  .about-text .section-body { color: rgba(255,255,255,0.62); }
+
+  .about-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    border-left: 2px solid var(--accent);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    line-height: 1.6;
+  }
+
+  .about-text .link-arrow { color: rgba(255,255,255,0.8); border-bottom-color: var(--accent); }
+  .about-text .link-arrow:hover { color: var(--accent); }
+
+  /* ─── SERVICES ─── */
+  .services {
+    padding: 7rem 4rem;
+    background: var(--cream);
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--warm-white);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    border: 1px solid rgba(160,140,120,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(20,17,14,0.08);
+  }
+
+  .service-icon {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+    margin-bottom: 1.4rem;
+  }
+
+  .service-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 1rem;
+  }
+
+  .service-desc {
+    font-size: 0.82rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--mid);
+    margin-bottom: 1.8rem;
+  }
+
+  .service-price {
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials {
+    padding: 7rem 4rem;
+    background: var(--warm-white);
+    text-align: center;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 3.5rem auto 0;
+  }
+
+  .testimonial-card {
+    background: var(--cream);
+    padding: 2.8rem;
+    text-align: left;
+    border-left: 2px solid var(--accent);
+  }
+
+  .testimonial-text {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--mid);
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-author {
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ─── STATS ─── */
+  .stats {
+    background: var(--dark);
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .stat-number {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.68rem;
+    font-weight: 200;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 0.6rem;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    padding: 7rem 4rem;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .contact-left .section-title { margin-bottom: 1rem; }
+
+  .contact-info {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .contact-item {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--mid);
+    letter-spacing: 0.05em;
+  }
+
+  .contact-item strong {
+    color: var(--dark);
+    font-weight: 400;
+    display: block;
+    margin-bottom: 0.15rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(90,82,72,0.3);
+    padding: 0.7rem 0;
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-bottom-color: var(--accent);
+  }
+
+  .form-group textarea { resize: none; min-height: 100px; }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--dark);
+    color: var(--cream);
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1rem 2.8rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.8rem;
+    align-self: flex-start;
+  }
+
+  .btn-primary:hover { background: var(--accent); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.45);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .footer-logo {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+    color: #fff;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.72rem;
+    font-weight: 200;
+    letter-spacing: 0.12em;
+    line-height: 1.7;
+  }
+
+  .footer-col-title {
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-links a {
+    font-size: 0.8rem;
+    font-weight: 200;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: #fff; }
+
+  .footer-social {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  .footer-social a {
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-social a:hover { color: var(--accent); }
+
+  .footer-bottom {
+    background: #111;
+    text-align: center;
+    padding: 1.2rem 4rem;
+    font-size: 0.65rem;
+    font-weight: 200;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section-wrap { background: var(--cream); padding: 2rem 4rem; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+
+    .intro { grid-template-columns: 1fr; }
+    .intro-image { height: 45vw; }
+    .intro-text { padding: 3.5rem 1.5rem; }
+
+    .gallery-section { padding: 4rem 1.2rem; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:nth-child(1), .gallery-item:nth-child(5) { grid-column: span 2; }
+
+    .about-strip { grid-template-columns: 1fr; }
+    .about-image { height: 55vw; }
+    .about-text { padding: 3.5rem 1.5rem; }
+
+    .services { padding: 4rem 1.2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+
+    .testimonials { padding: 4rem 1.2rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+
+    .stats { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
+
+    .contact { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+
+    footer { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Saffron Morriz</a>
+  <ul class="nav-links">
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Nova Scotia + Beyond</p>
+    <h1 class="hero-title">Documentary Wedding<br>Photographer</h1>
+    <p class="hero-subtitle">Whispered moments · Sun-drenched love · Stories that last forever</p>
+    <a href="#portfolio" class="hero-cta">View Portfolio</a>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-image"></div>
+  <div class="intro-text">
+    <span class="section-label">The Philosophy</span>
+    <h2 class="section-title">Real moments,<br><em>unscripted love</em></h2>
+    <p class="section-body">
+      I live for the moments that can't be planned — the laughs that come out of nowhere, the quiet glances, the little tiny things that make your story yours. Every wedding I photograph leaves a piece of my heart behind.
+    </p>
+    <p class="section-body">
+      Your wedding photos should do more than look beautiful — they should tell the true story of your day. I approach your wedding as though I'm one of your guests, documenting naturally, candidly, and full of emotion.
+    </p>
+    <a href="#about" class="link-arrow">Meet Saffron</a>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="portfolio">
+  <div class="gallery-header">
+    <span class="section-label">Portfolio</span>
+    <h2 class="section-title" style="text-align:center">Love stories<br><em>in every frame</em></h2>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1200&auto=format&fit=crop&q=80" alt="Wedding ceremony" loading="lazy" />
+      <div class="gallery-overlay"><span class="gallery-caption">Golden hour ceremony</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&auto=format&fit=crop&q=80" alt="Bridal portrait" loading="lazy" />
+      <div class="gallery-overlay"><span class="gallery-caption">Bridal portrait</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1464061884326-64f6d5e13e4a?w=800&auto=format&fit=crop&q=80" alt="Couple portrait" loading="lazy" />
+      <div class="gallery-overlay"><span class="gallery-caption">Nova Scotia elopement</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800&auto=format&fit=crop&q=80" alt="Reception details" loading="lazy" />
+      <div class="gallery-overlay"><span class="gallery-caption">Candid reception</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&auto=format&fit=crop&q=80" alt="Couple dancing" loading="lazy" />
+      <div class="gallery-overlay"><span class="gallery-caption">First dance</span></div>
+    </div>
+  </div>
+
+  <div class="gallery-cta-wrap">
+    <a href="#" class="link-arrow" style="margin-top:1rem">View Full Gallery</a>
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<section class="about-strip" id="about">
+  <div class="about-image"></div>
+  <div class="about-text">
+    <span class="section-label">About Saffron</span>
+    <h2 class="section-title">Hi, I'm <em>Saffron</em></h2>
+    <p class="section-body">
+      I'm a wedding and lifestyle photographer based in Truro, NS, but always ready to travel wherever your story takes me. In 2019, I took a leap and started this business — mostly by accident.
+    </p>
+    <blockquote class="about-quote">
+      "My style is all about capturing fleeting moments — the in-between glances, the deep belly laughs, the way the light catches just right."
+    </blockquote>
+    <p class="section-body">
+      I'm easygoing, down-to-earth, and always up for an adventure — whether that means hiking to a breathtaking elopement spot or running barefoot through a golden field at sunset.
+    </p>
+    <a href="#contact" class="link-arrow">Let's Connect</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div>
+    <div class="stat-number">5+</div>
+    <p class="stat-label">Years in business</p>
+  </div>
+  <div>
+    <div class="stat-number">200+</div>
+    <p class="stat-label">Weddings captured</p>
+  </div>
+  <div>
+    <div class="stat-number">∞</div>
+    <p class="stat-label">Memories preserved</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <span class="section-label">Offerings</span>
+    <h2 class="section-title" style="text-align:center">How we can<br><em>work together</em></h2>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">I</div>
+      <h3 class="service-title">Weddings</h3>
+      <p class="service-desc">Full-day wedding coverage from getting ready to the last dance. My packages include a complimentary engagement session to capture your story before the big day.</p>
+      <p class="service-price">6 – 10 hours · from $3,200</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">II</div>
+      <h3 class="service-title">Elopements</h3>
+      <p class="service-desc">Intimate coverage for couples who want something raw and just-you. Whether secluded ceremony or small gathering — I'm there for the essence of your day.</p>
+      <p class="service-price">1.5 – 4 hours · from $1,200</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">III</div>
+      <h3 class="service-title">Sessions</h3>
+      <p class="service-desc">Life's short and moments fly by. Couples, families, engagements — 25 professionally retouched digital images delivered via online gallery.</p>
+      <p class="service-price">1 – 2 hours · from $650</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <span class="section-label">Kind Words</span>
+  <h2 class="section-title"><em>What couples say</em></h2>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-text">"Saffron is an incredible photographer!! Having her take our wedding photos was the best decision we could've made. Not only are her photos flawless, but she's fun and down-to-earth. I would recommend her to anyone!"</p>
+      <span class="testimonial-author">— Amanda & James · Married 2024</span>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">"We couldn't be happier with our wedding photos. She captured every moment beautifully — not just us, but the joy and emotion of our guests. Saffron went above and beyond to make sure every special moment was preserved."</p>
+      <span class="testimonial-author">— Claire & Thomas · Married 2023</span>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">"I am so glad we chose Saffron! She exceeded our already-high expectations. Her thoughtfulness, creativity, and passion are evident in the way she works. If I could do it all over again, I wouldn't change a thing!"</p>
+      <span class="testimonial-author">— Sophie & Marc · Married 2024</span>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">"Choosing a photographer is stressful — it's a big expense and you want to get it right! Choose Saffron. She will not disappoint. She brought our vision to life in ways we never expected."</p>
+      <span class="testimonial-author">— Brooke & Daniel · Married 2023</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background: var(--cream); padding: 7rem 4rem;">
+  <div style="max-width:1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items:start;">
+    <div>
+      <span class="section-label">Get in Touch</span>
+      <h2 class="section-title">Ready to make<br><em>some magic?</em></h2>
+      <p class="section-body">I'd love to hear about your day. Fill out the form and I'll be in touch within 48 hours to schedule your complimentary consultation call.</p>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <strong>Location</strong>
+          Truro, Nova Scotia · Available Worldwide
+        </div>
+        <div class="contact-item">
+          <strong>Email</strong>
+          saffronmorriz@gmail.com
+        </div>
+        <div class="contact-item">
+          <strong>Phone</strong>
+          +1 902-809-8168
+        </div>
+        <div class="contact-item" style="margin-top:0.5rem;">
+          <strong>Book in advance</strong>
+          1–3 months for sessions · 6–12 months for weddings
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Emma & Liam" />
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="hello@yourname.com" />
+      </div>
+      <div class="form-group">
+        <label>Type of Session</label>
+        <select>
+          <option value="">Select one…</option>
+          <option>Wedding</option>
+          <option>Elopement</option>
+          <option>Engagement Session</option>
+          <option>Lifestyle / Family Session</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Estimated Date</label>
+        <input type="text" placeholder="September 2025" />
+      </div>
+      <div class="form-group">
+        <label>Tell Me About Your Day</label>
+        <textarea placeholder="Share your vision, location, vibe…"></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Saffron Morriz</div>
+    <p class="footer-tagline">Documentary Wedding Photographer<br>based in Truro, Nova Scotia.<br>Serving the Maritimes & beyond.</p>
+    <div class="footer-social">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+    </div>
+  </div>
+  <div>
+    <p class="footer-col-title">Navigate</p>
+    <ul class="footer-links">
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Offerings</p>
+    <ul class="footer-links">
+      <li><a href="#">Weddings</a></li>
+      <li><a href="#">Elopements</a></li>
+      <li><a href="#">Engagement Sessions</a></li>
+      <li><a href="#">Lifestyle Sessions</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  © 2025 Saffron Morriz Photography · Nova Scotia, Canada · All rights reserved
+</div>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = 'Message Sent ✓';
+  btn.style.background = '#b08d6a';
+  btn.style.cursor = 'default';
+}
+
+// Smooth nav scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const target = document.querySelector(id);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Nav shadow on scroll
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 60) {
+    nav.style.boxShadow = '0 2px 30px rgba(20,17,14,0.08)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+});
+</script>
+</body>
+</html>

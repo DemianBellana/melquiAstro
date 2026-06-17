@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #f5f0e8;
+  --warm-white: #faf8f4;
+  --dark: #1a1714;
+  --mid: #5a5248;
+  --light: #9e9088;
+  --accent: #b08d6a;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Jost', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--warm-white);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* Animaciones originales */
+@keyframes scrollDown {
+  0%, 100% { transform: scaleY(1); opacity: 0.6; }
+  50% { transform: scaleY(1.3); opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-scrollDown {
+  animation: scrollDown 2s ease-in-out infinite;
+}
+
+.animate-fadeUp {
+  animation: fadeUp 1s ease both;
+}
+
+.delay-150 { animation-delay: 0.15s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-450 { animation-delay: 0.45s; }
+.delay-700 { animation-delay: 0.7s; }
