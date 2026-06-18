@@ -189,7 +189,7 @@ const VideoWorkSection = () => {
           Categorías y<br /><em className="italic">especialidades</em>
         </h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1400px] mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-[1100px] mx-auto">
         {categories.map((cat, index) => (
           <VideoCard key={index} cat={cat} index={index} />
         ))}
