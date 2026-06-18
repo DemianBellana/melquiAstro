@@ -1,6 +1,26 @@
 import React, { useState } from 'react';
 import horizontalImg from '../assets/Horizontal.jpg';
 
+const InstagramIcon = ({ size = 28 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+    <rect x="2" y="2" width="20" height="20" rx="5.5"/>
+    <circle cx="12" cy="12" r="4.5"/>
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+  </svg>
+);
+
+const TikTokIcon = ({ size = 28 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.93a8.2 8.2 0 0 0 4.78 1.52V7a4.85 4.85 0 0 1-1.01-.31z"/>
+  </svg>
+);
+
+const FacebookIcon = ({ size = 28 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="none">
+    <path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/>
+  </svg>
+);
+
 const Contact = () => {
   const [isSent, setIsSent] = useState(false);
 
@@ -48,40 +68,81 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Redes sociales con el efecto de hover solicitado */}
-          <div className="flex flex-wrap gap-3 mt-12">
+          {/* Redes sociales - Desktop Version */}
+          <ul className="social-list-desktop hidden lg:flex">
             {[
               {
                 href: 'https://instagram.com/melisaquiroga',
                 label: 'Instagram',
-                color: 'bg-gradient-to-br from-[#f09433] via-[#dc2743] to-[#bc1888]'
+                icon: <InstagramIcon size={28} />,
+                i: '#E1306C', // More accurate brand pink/red
+                j: '#bc1888'
               },
               {
                 href: 'https://tiktok.com/@melisaquiroga',
                 label: 'TikTok',
-                color: 'bg-[#010101]'
+                icon: <TikTokIcon size={28} />,
+                i: '#000000',
+                j: '#444444'
               },
               {
                 href: 'https://facebook.com/melisaquiroga',
                 label: 'Facebook',
-                color: 'bg-[#1877f2]'
+                icon: <FacebookIcon size={28} />,
+                i: '#1877f2',
+                j: '#2F80ED'
               },
-            ].map(({ href, label, color }) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                className="group relative flex items-center gap-2.5 px-7 py-3 border border-white/20 overflow-hidden rounded-full
-                  text-[0.65rem] font-light tracking-[0.22em] uppercase transition-all duration-300"
+            ].map(({ href, label, icon, i, j }) => (
+              <li 
+                key={label} 
+                style={{ '--i': i, '--j': j } as React.CSSProperties}
+                onClick={() => window.open(href, '_blank', 'noopener,noreferrer')}
               >
-                {/* Background wipe effect */}
-                <span className={`absolute inset-0 transition-transform duration-[380ms] ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 ${color}`} />
-
-                <span className="relative z-10 text-white group-hover:text-white transition-colors duration-300">{label}</span>
-                <span className="relative z-10 text-white text-[0.7rem] opacity-0 -translate-x-1 translate-y-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 delay-75">↗</span>
-              </a>
+                <span className="icon">{icon}</span>
+                <span className="title">{label}</span>
+              </li>
             ))}
-          </div>
+          </ul>
+
+          {/* Redes sociales - Mobile Version (Circular & Filled) */}
+          <ul className="social-list-mobile flex lg:hidden">
+            {[
+              {
+                href: 'https://instagram.com/melisaquiroga',
+                label: 'Instagram',
+                icon: <InstagramIcon size={28} />,
+                color: '#e4405f'
+              },
+              {
+                href: 'https://tiktok.com/@melisaquiroga',
+                label: 'TikTok',
+                icon: <TikTokIcon size={28} />,
+                color: '#000000'
+              },
+              {
+                href: 'https://facebook.com/melisaquiroga',
+                label: 'Facebook',
+                icon: <FacebookIcon size={28} />,
+                color: '#3b5998'
+              },
+            ].map(({ href, label, icon, color }) => (
+              <li key={label}>
+                <a 
+                  href={href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn-circle"
+                  style={{ '--i': color } as React.CSSProperties}
+                >
+                  <span className="icon">{icon}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <form className="flex flex-col gap-8 bg-white/10 backdrop-blur-md p-8 md:p-12 border border-white/10 shadow-2xl" onSubmit={handleSubmit}>
+          <form className="flex flex-col gap-8 bg-white/10 backdrop-blur-md p-8 md:p-12 border border-white/10 shadow-2xl mt-12 lg:mt-0" onSubmit={handleSubmit}>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="flex flex-col gap-2 group">
               <label className="text-[0.62rem] font-medium tracking-[0.2em] uppercase text-white/60 transition-colors group-focus-within:text-[#D8B7B0]">Nombre</label>
