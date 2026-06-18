@@ -39,10 +39,10 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="grid grid-cols-1 lg:grid-cols-2 min-h-[85vh] bg-dark overflow-hidden">
+    <section id="about" className="grid grid-cols-1 lg:grid-cols-2 min-h-[85vh] bg-[#D8B7B0] overflow-hidden">
 
       {/* Columna Izquierda: iPhone CSS puro igual que VideoWork */}
-      <div className="relative flex items-center justify-center py-20 lg:py-0 bg-[#080808]">
+      <div className="relative flex items-center justify-center py-20 lg:py-0 bg-[#D8B7B0]">
 
         <motion.div
           ref={frameRef}
@@ -185,24 +185,24 @@ const About = () => {
       </div>
 
       {/* Columna Derecha: Texto */}
-      <div className="flex flex-col justify-center px-6 py-14 lg:px-24 lg:py-24 text-white bg-[#111] relative z-10">
-        <span className="text-[0.62rem] font-light tracking-[0.28em] uppercase text-accent mb-6">
+      <div className="flex flex-col justify-center px-6 py-14 lg:px-24 lg:py-24 text-[#161616] bg-[#D8B7B0] relative z-10">
+        <span className="text-[0.62rem] font-light tracking-[0.28em] uppercase text-[#161616] opacity-70 mb-6">
           Sobre Mí
         </span>
-        <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] font-light leading-[1.18] text-white mb-8">
-          Melisa <em className="italic text-accent">Quiroga</em>
+        <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] font-light leading-[1.18] text-[#161616] mb-8">
+          Melisa <em className="italic text-white">Quiroga</em>
         </h2>
         <div className="space-y-6">
-          <p className="text-[1.05rem] font-light leading-[1.8] text-[rgba(255,255,255,0.75)] max-w-[45ch]">
+          <p className="text-[1.05rem] font-light leading-[1.8] text-[#161616] opacity-80 max-w-[45ch]">
             Soy editora de video y creadora de contenido apasionada por contar historias visuales que conecten. Mi enfoque combina técnica cinematográfica con un ritmo dinámico adaptado a las tendencias actuales.
           </p>
-          <p className="text-[1.05rem] font-light leading-[1.8] text-[rgba(255,255,255,0.75)] max-w-[45ch]">
+          <p className="text-[1.05rem] font-light leading-[1.8] text-[#161616] opacity-80 max-w-[45ch]">
             Desde la captura aérea con drones hasta la edición minuciosa de reels, busco siempre la excelencia visual y narrativa en cada proyecto en el que participo.
           </p>
         </div>
         <div className="mt-14 flex items-center gap-5">
-          <div className="h-px w-16 bg-accent/50" />
-          <span className="text-[0.7rem] font-light tracking-[0.35em] uppercase text-accent/80">
+          <div className="h-px w-16 bg-[#161616] opacity-30" />
+          <span className="text-[0.7rem] font-light tracking-[0.35em] uppercase text-[#161616] opacity-60">
             Argentina & Worldwide
           </span>
         </div>

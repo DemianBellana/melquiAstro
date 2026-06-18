@@ -39,34 +39,34 @@ const ReelsSection = () => {
   };
 
   return (
-    <section id="reels" className="grid grid-cols-1 lg:grid-cols-2 min-h-[90vh] bg-warm-white overflow-hidden">
+    <section id="reels" className="grid grid-cols-1 lg:grid-cols-2 min-h-[90vh] bg-[#e4749a] overflow-hidden">
       {/* Columna Izquierda: Texto */}
-      <div className="flex flex-col justify-center px-6 py-14 lg:px-20 lg:py-24 bg-cream order-2 lg:order-1 relative z-10">
-        <span className="text-[0.62rem] font-light tracking-[0.28em] uppercase text-accent mb-6">
+      <div className="flex flex-col justify-center px-6 py-14 lg:px-20 lg:py-24 bg-[#D8B7B0] order-2 lg:order-1 relative z-10">
+        <span className="text-[0.62rem] font-light tracking-[0.28em] uppercase text-[#161616] opacity-70 mb-6">
           01. Edición de Reels
         </span>
-        <h2 className="font-serif text-[clamp(2rem,3.5vw,3.2rem)] font-light leading-[1.18] text-dark mb-6">
-          Contenido que<br /><em className="italic text-accent">atrapa en segundos</em>
+        <h2 className="font-serif text-[clamp(2rem,3.5vw,3.2rem)] font-light leading-[1.18] text-[#161616] mb-6">
+          Contenido que<br /><em className="italic text-white">atrapa en segundos</em>
         </h2>
-        <p className="text-[0.88rem] font-light leading-[1.85] text-mid max-w-[42ch] mb-9">
+        <p className="text-[0.88rem] font-light leading-[1.85] text-[#161616] opacity-80 max-w-[42ch] mb-9">
           Edición dinámica pensada para el formato vertical. Transiciones fluidas, ritmo visual y storytelling condensado para maximizar el engagement en plataformas como Instagram y TikTok.
         </p>
-        <p className="text-[0.88rem] font-light leading-[1.85] text-mid max-w-[42ch] mb-9">
+        <p className="text-[0.88rem] font-light leading-[1.85] text-[#161616] opacity-80 max-w-[42ch] mb-9">
           Esta pieza recopila mis mejores trabajos, demostrando mi capacidad para captar la atención y contar historias potentes en formatos breves.
         </p>
         <div className="mt-6 flex items-center gap-4">
-          <div className="w-10 h-10 rounded-full border border-accent/30 flex items-center justify-center">
-            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <div className="w-10 h-10 rounded-full border border-[#161616]/20 flex items-center justify-center">
+            <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
           </div>
-          <span className="text-[0.7rem] uppercase tracking-widest text-accent font-medium">
+          <span className="text-[0.7rem] uppercase tracking-widest text-[#161616] opacity-70 font-medium">
             Formato Vertical 9:16
           </span>
         </div>
       </div>
 
       {/* Columna Derecha: iPhone CSS puro */}
-      <div className="relative bg-dark order-1 lg:order-2 flex items-center justify-center py-20 lg:py-0 overflow-hidden min-h-[700px]">
-        <div className="absolute w-[500px] h-[500px] bg-accent/10 blur-[150px] rounded-full z-0" />
+      <div className="relative bg-[#D8B7B0] order-1 lg:order-2 flex items-center justify-center py-20 lg:py-0 overflow-hidden min-h-[700px]">
+        <div className="absolute w-[500px] h-[500px] bg-white/10 blur-[150px] rounded-full z-0" />
 
         <motion.div
           ref={frameRef}
