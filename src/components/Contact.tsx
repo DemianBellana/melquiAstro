@@ -72,10 +72,11 @@ const Contact = () => {
             ].map(({ href, label, icon }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer"
                 className={`group relative flex items-center gap-2.5 px-6 py-3 border overflow-hidden rounded-full
-                  text-[0.65rem] font-light tracking-[0.22em] uppercase transition-colors duration-300
-                  ${label === 'Instagram' ? 'max-md:text-cream max-md:border-transparent' : ''}
-                  ${label === 'TikTok' ? 'max-md:text-cream max-md:border-transparent' : ''}
-                  ${label === 'Facebook' ? 'max-md:text-cream max-md:border-transparent' : ''}
+                  text-[0.65rem] font-light tracking-[0.22em] uppercase transition-all duration-300
+                  shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)]
+                  ${label === 'Instagram' ? 'max-md:text-cream max-md:border-transparent max-md:shadow-[0_8px_20px_rgba(225,48,108,0.2)]' : ''}
+                  ${label === 'TikTok' ? 'max-md:text-cream max-md:border-transparent max-md:shadow-[0_8px_20px_rgba(0,0,0,0.2)]' : ''}
+                  ${label === 'Facebook' ? 'max-md:text-cream max-md:border-transparent max-md:shadow-[0_8px_20px_rgba(24,119,242,0.2)]' : ''}
                   md:border-[rgba(90,82,72,0.25)] md:bg-white/60 md:text-mid md:hover:text-cream md:hover:border-transparent`}
               >
                 {/* wipe fill */}
