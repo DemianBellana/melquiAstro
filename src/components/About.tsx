@@ -2,8 +2,8 @@ import { useState, useRef } from 'react';
 import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion';
 
 const About = () => {
-  const frameRef = useRef(null);
-  const videoRef = useRef(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
 
@@ -14,7 +14,7 @@ const About = () => {
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['5deg', '-5deg']);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7deg', '7deg']);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!frameRef.current) return;
     const rect = frameRef.current.getBoundingClientRect();
     x.set((e.clientX - rect.left) / rect.width - 0.5);
@@ -23,15 +23,19 @@ const About = () => {
 
   const handleMouseLeave = () => { x.set(0); y.set(0); };
 
-  const togglePlay = (e) => {
+  const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
     const vid = videoRef.current;
     if (!vid) return;
-    if (vid.paused) { vid.play(); }
+    if (vid.paused) {
+      vid.play().catch((err: any) => {
+        console.warn("Video play interrupted:", err);
+      });
+    }
     else            { vid.pause(); }
   };
 
-  const toggleMute = (e) => {
+  const toggleMute = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!videoRef.current) return;
     videoRef.current.muted = !videoRef.current.muted;

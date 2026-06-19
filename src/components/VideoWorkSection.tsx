@@ -31,7 +31,14 @@ const socialButtons = [
 ];
 
 // ─── iPhone Frame ────────────────────────────────────────────────────────────
-const IPhoneFrame = ({ video, isActive, onClick }) => {
+interface IPhoneFrameProps {
+  video: string;
+  isActive: boolean;
+  onClick: () => void;
+  isMobile?: boolean;
+}
+
+const IPhoneFrame = ({ video, isActive, onClick, isMobile = false }: IPhoneFrameProps) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const mouseXSpring = useSpring(x, { stiffness: 100, damping: 20 });
@@ -39,7 +46,7 @@ const IPhoneFrame = ({ video, isActive, onClick }) => {
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['6deg', '-6deg']);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-8deg', '8deg']);
 
-  const frameRef = useRef(null);
+  const frameRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -50,13 +57,18 @@ const IPhoneFrame = ({ video, isActive, onClick }) => {
     }
   }, [isActive]);
 
-  const handleVideoClick = (e) => {
+  const handleVideoClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     const vid = videoRef.current;
     if (!vid) return;
     if (vid.paused) {
-      vid.play();
-      setPlaying(true);
+      vid.play()
+        .then(() => {
+          setPlaying(true);
+        })
+        .catch((err: any) => {
+          console.warn("Video play interrupted:", err);
+        });
     } else {
       vid.pause();
       setPlaying(false);
@@ -64,7 +76,7 @@ const IPhoneFrame = ({ video, isActive, onClick }) => {
     onClick();
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!frameRef.current) return;
     const rect = frameRef.current.getBoundingClientRect();
     x.set((e.clientX - rect.left) / rect.width - 0.5);
@@ -79,10 +91,10 @@ const IPhoneFrame = ({ video, isActive, onClick }) => {
   return (
     <motion.div
       ref={frameRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, perspective: 1000 }}
-      whileHover={{ scale: 1.04, y: -8 }}
+      onMouseMove={isMobile ? undefined : handleMouseMove}
+      onMouseLeave={isMobile ? undefined : handleMouseLeave}
+      style={isMobile ? {} : { rotateX, rotateY, perspective: 1000 }}
+      whileHover={isMobile ? {} : { scale: 1.04, y: -8 }}
       transition={{ type: 'spring', stiffness: 220, damping: 18 }}
       className="iphone-frame cursor-pointer"
     >
@@ -282,7 +294,7 @@ const IPhoneFrame = ({ video, isActive, onClick }) => {
 
 // ─── Main Section ─────────────────────────────────────────────────────────────
 const VideoWorkSection = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -466,6 +478,7 @@ const VideoWorkSection = () => {
                   video={cat.video}
                   isActive={activeIndex === i}
                   onClick={() => setActiveIndex(activeIndex === i ? null : i)}
+                  isMobile={isMobile}
                 />
 
                 <div style={{ textAlign: 'center' }}>
@@ -493,7 +506,7 @@ const VideoWorkSection = () => {
                   </p>
 
                   {/* Social icons */}
-                  <div style={{ display: 'flex', gap: '8px', justifyHeight: 'center', justifyContent: 'center' }}>
+                  <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
                     {socialButtons.map(({ key, Icon, label, color }) => (
                       <a
                         key={key}
@@ -574,6 +587,7 @@ const VideoWorkSection = () => {
                 video={cat.video}
                 isActive={activeIndex === i}
                 onClick={() => setActiveIndex(activeIndex === i ? null : i)}
+                isMobile={isMobile}
               />
 
               {/* Label below phone */}

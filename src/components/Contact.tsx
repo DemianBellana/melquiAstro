@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import horizontalImg from '../assets/Horizontal.jpg';
 
 const InstagramIcon = ({ size = 28 }: { size?: number }) => (
@@ -45,13 +45,13 @@ const Contact = () => {
               <strong className="text-white font-normal block mb-1 text-[0.68rem] tracking-[0.18em] uppercase opacity-50">
                 Email
               </strong>
-              <a href="mailto:melisaquiroga@gmail.com" className="hover:text-[#D8B7B0] transition-colors text-lg">melisaquiroga@gmail.com</a>
+              <a href="mailto:melisaquiroga@gmail.com" className="hover:text-[#D8B7B0] transition-colors text-xl">melisaquiroga@gmail.com</a>
             </div>
             <div className="text-[0.9rem] font-light text-white/70 tracking-[0.05em] text-center">
               <strong className="text-white font-normal block mb-1 text-[0.68rem] tracking-[0.18em] uppercase opacity-50">
                 WhatsApp
               </strong>
-              <a href="https://wa.me/yournumber" target="_blank" rel="noopener noreferrer" className="hover:text-[#D8B7B0] transition-colors text-lg">+54 9 11 XXXX-XXXX</a>
+              <a href="https://wa.me/yournumber" target="_blank" rel="noopener noreferrer" className="hover:text-[#D8B7B0] transition-colors text-xl">+54 9 11 XXXX-XXXX</a>
             </div>
           </div>
 

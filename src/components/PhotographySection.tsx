@@ -39,7 +39,11 @@ const CategoryCarousel = ({ photos, title, onImageClick, globalOffset }: {
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<any>(null);
+  
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -72,6 +76,34 @@ const CategoryCarousel = ({ photos, title, onImageClick, globalOffset }: {
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
     resetTimer();
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    setTouchStart(e.targetTouches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStart) return;
+    const currentTouch = e.targetTouches[0].clientX;
+    const diff = currentTouch - touchStart;
+    setDragOffset(diff);
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    if (!touchStart) return;
+    const swipeThreshold = 50;
+    if (dragOffset < -swipeThreshold) {
+      handleNext();
+    } else if (dragOffset > swipeThreshold) {
+      handlePrev();
+    } else {
+      resetTimer();
+    }
+    setTouchStart(null);
+    setDragOffset(0);
   };
 
   if (!isMobile) {
@@ -110,26 +142,22 @@ const CategoryCarousel = ({ photos, title, onImageClick, globalOffset }: {
   return (
     <div 
       className="relative overflow-hidden touch-pan-y"
-      onPointerDown={() => { if (timerRef.current) clearInterval(timerRef.current); }}
-      onPointerUp={resetTimer}
-      onPointerLeave={resetTimer}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
-      <motion.div 
+      <div 
         className="flex"
-        animate={{ x: `-${currentIndex * 100}%` }}
-        transition={{ type: "spring", damping: 30, stiffness: 200 }}
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.7}
-        onDragEnd={(_, info) => {
-          const swipeThreshold = 50;
-          if (info.offset.x < -swipeThreshold) handleNext();
-          else if (info.offset.x > swipeThreshold) handlePrev();
-          else resetTimer();
+        style={{
+          transform: `translateX(calc(-${currentIndex * 100}% + ${dragOffset}px))`,
+          transition: isDragging ? 'none' : 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         }}
       >
         {photos.map((photo, idx) => (
-          <div key={idx} className="min-w-full aspect-[3/4] px-1">
+          <div 
+            key={idx} 
+            className="min-w-full aspect-[3/4] px-1"
+          >
             <div className="w-full h-full overflow-hidden rounded-sm">
               <img 
                 src={photo} 
@@ -139,7 +167,7 @@ const CategoryCarousel = ({ photos, title, onImageClick, globalOffset }: {
             </div>
           </div>
         ))}
-      </motion.div>
+      </div>
       
       <div className="flex justify-center gap-1.5 mt-4">
         {photos.map((_, idx) => (
@@ -155,9 +183,82 @@ const CategoryCarousel = ({ photos, title, onImageClick, globalOffset }: {
   );
 };
 
+const categories = [
+  {
+    title: 'Sports',
+    photos: [
+      '/assets/photo/sports/IMG_7085.AVIF',
+      '/assets/photo/sports/IMG_7086.AVIF',
+      '/assets/photo/sports/IMG_7087.AVIF',
+      '/assets/photo/sports/IMG_7089.AVIF',
+    ]
+  },
+  {
+    title: 'Travel',
+    photos: [
+      '/assets/photo/travel/IMG_7126.AVIF',
+      '/assets/photo/travel/IMG_7127.AVIF',
+      '/assets/photo/travel/IMG_7128.AVIF',
+      '/assets/photo/travel/IMG_7129.AVIF',
+      '/assets/photo/travel/IMG_7130.AVIF',
+      '/assets/photo/travel/IMG_7131.AVIF',
+      '/assets/photo/travel/IMG_7132.AVIF',
+      '/assets/photo/travel/IMG_7133.AVIF',
+      '/assets/photo/travel/IMG_7134.AVIF',
+      '/assets/photo/travel/IMG_7135.AVIF',
+      '/assets/photo/travel/IMG_7136.AVIF',
+      '/assets/photo/travel/IMG_7137.AVIF',
+    ]
+  },
+  {
+    title: 'Portraits',
+    photos: [
+      '/assets/photo/portraits/IMG_7150.AVIF',
+      '/assets/photo/portraits/IMG_7152.AVIF',
+      '/assets/photo/portraits/IMG_7153.AVIF',
+      '/assets/photo/portraits/IMG_7154.AVIF',
+      '/assets/photo/portraits/IMG_7155.AVIF',
+      '/assets/photo/portraits/IMG_7156.AVIF',
+    ]
+  },
+  {
+    title: 'Events',
+    photos: [
+      '/assets/photo/events/IMG_7103.AVIF',
+      '/assets/photo/events/IMG_7104.AVIF',
+      '/assets/photo/events/IMG_7105.AVIF',
+      '/assets/photo/events/IMG_7106.AVIF',
+      '/assets/photo/events/IMG_7107.AVIF',
+      '/assets/photo/events/IMG_7108.AVIF',
+      '/assets/photo/events/IMG_7109.AVIF',
+      '/assets/photo/events/IMG_7110.AVIF',
+      '/assets/photo/events/IMG_7111.AVIF',
+    ]
+  }
+];
+
 const PhotographySection = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState<'Featured' | 'All' | string>('Featured');
+  const [isMobileParent, setIsMobileParent] = useState(false);
+  const [featuredPhotos, setFeaturedPhotos] = useState<string[]>([]);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobileParent(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Select one random photo from each category
+    const selected = categories.map(cat => {
+      const randomIndex = Math.floor(Math.random() * cat.photos.length);
+      return cat.photos[randomIndex];
+    });
+    setFeaturedPhotos(selected);
+  }, []);
 
   useGSAP(() => {
     const categoryBlocks = gsap.utils.toArray('.category-block');
@@ -205,65 +306,6 @@ const PhotographySection = () => {
     });
   }, { scope: sectionRef });
 
-  const categories = [
-    {
-      title: 'Sports',
-      photos: [
-        '/assets/photo/sports/IMG_7081.AVIF',
-        '/assets/photo/sports/IMG_7082.AVIF',
-        '/assets/photo/sports/IMG_7083.AVIF',
-        '/assets/photo/sports/IMG_7084.AVIF',
-        '/assets/photo/sports/IMG_7085.AVIF',
-        '/assets/photo/sports/IMG_7086.AVIF',
-        '/assets/photo/sports/IMG_7087.AVIF',
-        '/assets/photo/sports/IMG_7088.AVIF',
-        '/assets/photo/sports/IMG_7089.AVIF',
-      ]
-    },
-    {
-      title: 'Travel',
-      photos: [
-        '/assets/photo/travel/IMG_7126.AVIF',
-        '/assets/photo/travel/IMG_7127.AVIF',
-        '/assets/photo/travel/IMG_7128.AVIF',
-        '/assets/photo/travel/IMG_7129.AVIF',
-        '/assets/photo/travel/IMG_7130.AVIF',
-        '/assets/photo/travel/IMG_7131.AVIF',
-        '/assets/photo/travel/IMG_7132.AVIF',
-        '/assets/photo/travel/IMG_7133.AVIF',
-        '/assets/photo/travel/IMG_7134.AVIF',
-        '/assets/photo/travel/IMG_7135.AVIF',
-        '/assets/photo/travel/IMG_7136.AVIF',
-        '/assets/photo/travel/IMG_7137.AVIF',
-      ]
-    },
-    {
-      title: 'Portraits',
-      photos: [
-        '/assets/photo/portraits/IMG_7150.AVIF',
-        '/assets/photo/portraits/IMG_7152.AVIF',
-        '/assets/photo/portraits/IMG_7153.AVIF',
-        '/assets/photo/portraits/IMG_7154.AVIF',
-        '/assets/photo/portraits/IMG_7155.AVIF',
-        '/assets/photo/portraits/IMG_7156.AVIF',
-      ]
-    },
-    {
-      title: 'Events',
-      photos: [
-        '/assets/photo/events/IMG_7103.AVIF',
-        '/assets/photo/events/IMG_7104.AVIF',
-        '/assets/photo/events/IMG_7105.AVIF',
-        '/assets/photo/events/IMG_7106.AVIF',
-        '/assets/photo/events/IMG_7107.AVIF',
-        '/assets/photo/events/IMG_7108.AVIF',
-        '/assets/photo/events/IMG_7109.AVIF',
-        '/assets/photo/events/IMG_7110.AVIF',
-        '/assets/photo/events/IMG_7111.AVIF',
-      ]
-    }
-  ];
-
   const allPhotos = categories.flatMap(cat => cat.photos);
 
   const handleNext = (e?: React.MouseEvent) => {
@@ -288,6 +330,17 @@ const PhotographySection = () => {
   }, [selectedImage]);
 
   let currentGlobalOffset = 0;
+  const categoriesWithOffsets = categories.map(cat => {
+    const offset = currentGlobalOffset;
+    currentGlobalOffset += cat.photos.length;
+    return { ...cat, offset };
+  });
+
+  const filteredCategories = (isMobileParent && activeCategory !== 'All' && activeCategory !== 'Featured')
+    ? categoriesWithOffsets.filter(cat => cat.title === activeCategory)
+    : categoriesWithOffsets;
+
+  const isFeatured = isMobileParent && activeCategory === 'Featured';
 
   return (
     <section id="photography" ref={sectionRef} className="px-6 py-16 md:px-16 md:py-28 bg-cream overflow-hidden">
@@ -300,24 +353,60 @@ const PhotographySection = () => {
         </h2>
       </div>
 
-      <div className="space-y-16 md:space-y-24 max-w-[1400px] mx-auto">
-        {categories.map((cat) => {
-          const offset = currentGlobalOffset;
-          currentGlobalOffset += cat.photos.length;
+      {/* Selector de Categorías en Mobile */}
+      <div className="flex md:hidden flex-wrap justify-center gap-2 mb-10 pb-4 max-w-[1400px] mx-auto border-b border-accent/10 px-4">
+        {['All', ...categories.map(c => c.title), 'Featured'].map((tab) => {
+          const isActive = activeCategory === tab;
+          let label = tab;
+          if (tab === 'Featured') label = 'Destacadas';
+          else if (tab === 'All') label = 'Todas';
           return (
-            <div key={cat.title} className="category-block">
-              <h3 className="category-title font-serif text-2xl mb-8 border-l-2 border-accent pl-4 text-dark/80">
-                {cat.title}
-              </h3>
-              <CategoryCarousel 
-                photos={cat.photos} 
-                title={cat.title} 
-                onImageClick={setSelectedImage}
-                globalOffset={offset}
-              />
-            </div>
+            <button
+              key={tab}
+              onClick={() => setActiveCategory(tab)}
+              className={`flex-shrink-0 px-3.5 py-2 rounded-full text-[11px] font-serif tracking-wider transition-all duration-300 ${
+                isActive 
+                  ? 'bg-accent text-white shadow-md' 
+                  : 'bg-dark/5 text-dark/60 hover:bg-dark/10'
+              }`}
+              style={{ border: 'none', cursor: 'pointer' }}
+            >
+              {label}
+            </button>
           );
         })}
+      </div>
+
+      <div className="space-y-16 md:space-y-24 max-w-[1400px] mx-auto">
+        {isFeatured ? (
+          <div className="category-block">
+            <h3 className="category-title font-serif text-2xl mb-8 border-l-2 border-accent pl-4 text-dark/80">
+              Destacadas
+            </h3>
+            <CategoryCarousel 
+              photos={featuredPhotos} 
+              title="Destacadas" 
+              onImageClick={() => {}}
+              globalOffset={0}
+            />
+          </div>
+        ) : (
+          filteredCategories.map((cat) => {
+            return (
+              <div key={cat.title} className="category-block">
+                <h3 className="category-title font-serif text-2xl mb-8 border-l-2 border-accent pl-4 text-dark/80">
+                  {cat.title}
+                </h3>
+                <CategoryCarousel 
+                  photos={cat.photos} 
+                  title={cat.title} 
+                  onImageClick={setSelectedImage}
+                  globalOffset={cat.offset}
+                />
+              </div>
+            );
+          })
+        )}
       </div>
 
       {/* Redes sociales — al pie de la sección */}

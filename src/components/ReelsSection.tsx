@@ -7,12 +7,12 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger);
 
 const ReelsSection = () => {
-  const containerRef = useRef(null);
-  const textRef = useRef(null);
-  const iphoneRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const iphoneRef = useRef<HTMLDivElement>(null);
   
-  const frameRef = useRef(null);
-  const videoRef = useRef(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
 
@@ -30,12 +30,14 @@ const ReelsSection = () => {
         }
       });
 
-      tl.from(textRef.current.children, {
-        opacity: 0,
-        y: 30,
-        stagger: 0.1,
-        duration: 0.8
-      });
+      if (textRef.current) {
+        tl.from(textRef.current.children, {
+          opacity: 0,
+          y: 30,
+          stagger: 0.1,
+          duration: 0.8
+        });
+      }
 
       tl.from(iphoneRef.current, {
         x: "50%",
@@ -57,7 +59,7 @@ const ReelsSection = () => {
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['5deg', '-5deg']);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7deg', '7deg']);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!frameRef.current) return;
     const rect = frameRef.current.getBoundingClientRect();
     x.set((e.clientX - rect.left) / rect.width - 0.5);
@@ -66,15 +68,19 @@ const ReelsSection = () => {
 
   const handleMouseLeave = () => { x.set(0); y.set(0); };
 
-  const togglePlay = (e) => {
+  const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
     const vid = videoRef.current;
     if (!vid) return;
-    if (vid.paused) { vid.play(); }
+    if (vid.paused) {
+      vid.play().catch((err: any) => {
+        console.warn("Video play interrupted:", err);
+      });
+    }
     else            { vid.pause(); }
   };
 
-  const toggleMute = (e) => {
+  const toggleMute = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!videoRef.current) return;
     videoRef.current.muted = !videoRef.current.muted;
