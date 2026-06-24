@@ -114,6 +114,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 26px;
+  padding-right: 120px; /* Evita que el botón flotante de WhatsApp tape el contenido en escritorio */
   flex-wrap: wrap;
   gap: 10px;
 }
@@ -200,6 +201,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
+    padding-right: 0;
   }
 }
 

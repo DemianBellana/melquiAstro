@@ -15,12 +15,12 @@ const WhatsAppButton = () => {
 
   return (
     <a
-      href="https://wa.me/5491112345678" // Reemplazar con el número real
+      href="https://wa.me/5491166898081" // Reemplazar con el número real
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-[100] flex items-center justify-center gap-0 bg-[#25D366] text-white w-16 h-16 md:w-20 md:h-20 rounded-full shadow-lg transition-all duration-300 hover:w-auto hover:px-6 md:hover:px-8 hover:scale-105 hover:bg-[#20ba5a] group animate-fade-in-up"
+      className="fixed bottom-6 right-6 z-[100] flex items-center justify-center gap-0 bg-[#25D366] text-white w-16 h-16 lg:w-20 lg:h-20 rounded-full shadow-lg transition-all duration-300 lg:hover:w-[220px] lg:hover:px-8 lg:hover:scale-105 lg:hover:bg-[#20ba5a] group animate-fade-in-up"
     >
-      <span className="max-w-0 overflow-hidden whitespace-nowrap transition-all duration-1000 delay-200 group-hover:max-w-[140px] group-hover:mr-3 md:group-hover:mr-4 font-medium text-lg md:text-xl">
+      <span className="max-w-0 overflow-hidden whitespace-nowrap transition-all duration-300 lg:group-hover:max-w-[140px] lg:group-hover:mr-4 font-medium text-lg lg:text-xl">
         Contacto
       </span>
       <div className="flex-shrink-0 flex items-center justify-center">

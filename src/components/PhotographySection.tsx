@@ -8,8 +8,8 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger);
 
 const SOCIAL_LINKS = {
-  instagram: 'https://instagram.com/TU_USUARIO',
-  tiktok: 'https://tiktok.com/@TU_USUARIO',
+  instagram: 'https://www.instagram.com/melquigrafias/',
+  tiktok: 'https://www.tiktok.com/@meelqui',
 };
 
 const IconInstagram = () => (

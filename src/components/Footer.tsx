@@ -60,8 +60,8 @@ export default function Footer() {
             Disponible para proyectos freelance.
           </p>
           <div className="ftr-socials">
-            <a href="https://instagram.com/melisaquiroga" target="_blank" rel="noopener noreferrer" className="ftr-social-link">Instagram</a>
-            <a href="https://tiktok.com/@melisaquiroga" target="_blank" rel="noopener noreferrer" className="ftr-social-link">TikTok</a>
+            <a href="https://www.instagram.com/melquigrafias/" target="_blank" rel="noopener noreferrer" className="ftr-social-link">Instagram</a>
+            <a href="https://www.tiktok.com/@meelqui" target="_blank" rel="noopener noreferrer" className="ftr-social-link">TikTok</a>
             <a href="https://vimeo.com" target="_blank" rel="noopener noreferrer" className="ftr-social-link">Vimeo</a>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href="https://wa.me/541139372332" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/5491166898081" target="_blank" rel="noopener noreferrer">
                 WhatsApp
               </a>
             </li>

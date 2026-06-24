@@ -59,7 +59,7 @@ const Contact = () => {
               <strong className="text-white font-normal block mb-1 text-[0.68rem] tracking-[0.18em] uppercase opacity-50">
                 WhatsApp
               </strong>
-              <a href="https://wa.me/yournumber" target="_blank" rel="noopener noreferrer" className="hover:text-[#D8B7B0] transition-colors text-xl">+54 9 11 XXXX-XXXX</a>
+              <a href="https://wa.me/5491166898081" target="_blank" rel="noopener noreferrer" className="hover:text-[#D8B7B0] transition-colors text-xl">+54 9 11 6689-8081</a>
             </div>
           </div>
 
@@ -67,14 +67,14 @@ const Contact = () => {
           <ul className="social-list-desktop hidden lg:flex justify-center gap-6">
             {[
               {
-                href: 'https://instagram.com/melisaquiroga',
+                href: 'https://www.instagram.com/melquigrafias/',
                 label: 'Instagram',
                 icon: <InstagramIcon size={28} />,
                 i: '#E1306C',
                 j: '#bc1888'
               },
               {
-                href: 'https://tiktok.com/@melisaquiroga',
+                href: 'https://www.tiktok.com/@meelqui',
                 label: 'TikTok',
                 icon: <TikTokIcon size={28} />,
                 i: '#000000',
@@ -96,13 +96,13 @@ const Contact = () => {
           <ul className="social-list-mobile flex lg:hidden justify-center gap-4">
             {[
               {
-                href: 'https://instagram.com/melisaquiroga',
+                href: 'https://www.instagram.com/melquigrafias/',
                 label: 'Instagram',
                 icon: <InstagramIcon size={28} />,
                 color: '#e4405f'
               },
               {
-                href: 'https://tiktok.com/@melisaquiroga',
+                href: 'https://www.tiktok.com/@meelqui',
                 label: 'TikTok',
                 icon: <TikTokIcon size={28} />,
                 color: '#000000'
