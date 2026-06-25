@@ -38,7 +38,7 @@ const Contact = () => {
 
       <div className="relative z-10 max-w-[800px] mx-auto text-center w-full flex flex-col items-center justify-center">
         <div className="text-white flex flex-col items-center">
-          <span className="text-[0.85rem] font-light tracking-[0.28em] uppercase text-white/70 mb-6 block">
+          <span className="text-[0.95rem] font-light tracking-[0.28em] uppercase text-white/70 mb-6 block">
             Contacto
           </span>
           <h2 className="font-serif text-[clamp(2.5rem,4vw,3.8rem)] font-light leading-[1.12] text-white mt-4 mb-6 text-center">
