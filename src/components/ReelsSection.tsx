@@ -23,14 +23,14 @@ const PhotoCameraIcon = ({ size }: { size: number }) => (
 );
 
 const backgroundCameras = [
-  { top: '8%', left: '6%', size: 48, rotate: -15, opacity: 0.22 },
-  { top: '22%', left: '44%', size: 68, rotate: 12, opacity: 0.18 },
-  { top: '78%', left: '12%', size: 58, rotate: -8, opacity: 0.20 },
-  { top: '88%', left: '46%', size: 42, rotate: 25, opacity: 0.18 },
-  { top: '12%', left: '82%', size: 76, rotate: 18, opacity: 0.16 },
-  { top: '48%', left: '74%', size: 54, rotate: -22, opacity: 0.24 },
-  { top: '84%', left: '86%', size: 64, rotate: 10, opacity: 0.18 },
-  { top: '56%', left: '4%', size: 46, rotate: -5, opacity: 0.20 },
+  { top: '8%', left: '6%', size: 64, rotate: -15, opacity: 0.42 },
+  { top: '22%', left: '44%', size: 88, rotate: 12, opacity: 0.35 },
+  { top: '78%', left: '12%', size: 76, rotate: -8, opacity: 0.40 },
+  { top: '88%', left: '46%', size: 56, rotate: 25, opacity: 0.38 },
+  { top: '12%', left: '82%', size: 98, rotate: 18, opacity: 0.32 },
+  { top: '48%', left: '74%', size: 72, rotate: -22, opacity: 0.45 },
+  { top: '84%', left: '86%', size: 84, rotate: 10, opacity: 0.35 },
+  { top: '56%', left: '4%', size: 60, rotate: -5, opacity: 0.40 },
 ];
 
 const ReelsSection = () => {
