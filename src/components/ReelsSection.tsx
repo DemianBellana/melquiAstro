@@ -22,6 +22,23 @@ const PhotoCameraIcon = ({ size }: { size: number }) => (
   </svg>
 );
 
+const IPhoneIcon = ({ size }: { size: number }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="1.6" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <rect x="5" y="2" width="14" height="20" rx="2.5" />
+    <rect x="10" y="4.5" width="4" height="1" rx="0.5" fill="currentColor" stroke="none" />
+    <line x1="10" y1="20" x2="14" y2="20" strokeWidth="1.2" />
+  </svg>
+);
+
 const backgroundCameras = [
   { top: '8%', left: '6%', size: 64, rotate: -15, opacity: 0.42 },
   { top: '22%', left: '44%', size: 88, rotate: 12, opacity: 0.35 },
@@ -31,6 +48,17 @@ const backgroundCameras = [
   { top: '48%', left: '74%', size: 72, rotate: -22, opacity: 0.45 },
   { top: '84%', left: '86%', size: 84, rotate: 10, opacity: 0.35 },
   { top: '56%', left: '4%', size: 60, rotate: -5, opacity: 0.40 },
+];
+
+const backgroundPhones = [
+  { top: '35%', left: '18%', size: 64, rotate: 15, opacity: 0.38 },
+  { top: '5%', left: '30%', size: 88, rotate: -12, opacity: 0.32 },
+  { top: '88%', left: '28%', size: 76, rotate: 20, opacity: 0.40 },
+  { top: '55%', left: '42%', size: 56, rotate: -18, opacity: 0.35 },
+  { top: '32%', left: '90%', size: 98, rotate: -25, opacity: 0.34 },
+  { top: '70%', left: '64%', size: 72, rotate: 12, opacity: 0.42 },
+  { top: '15%', left: '60%', size: 84, rotate: -8, opacity: 0.36 },
+  { top: '92%', left: '72%', size: 60, rotate: 15, opacity: 0.38 },
 ];
 
 const ReelsSection = () => {
@@ -120,11 +148,11 @@ const ReelsSection = () => {
       ref={containerRef}
       className="min-h-[90vh] relative bg-[#D8B7B0] overflow-hidden flex items-center justify-center py-20 @container"
     >
-      {/* Background Decorative Cameras (Desktop only) */}
+      {/* Background Decorative Cameras & Phones (Desktop only) */}
       <div className="hidden lg:block absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {backgroundCameras.map((cam, idx) => (
           <div
-            key={idx}
+            key={`cam-${idx}`}
             className="absolute text-white transition-transform duration-300"
             style={{
               top: cam.top,
@@ -134,6 +162,20 @@ const ReelsSection = () => {
             }}
           >
             <PhotoCameraIcon size={cam.size} />
+          </div>
+        ))}
+        {backgroundPhones.map((phone, idx) => (
+          <div
+            key={`phone-${idx}`}
+            className="absolute text-white transition-transform duration-300"
+            style={{
+              top: phone.top,
+              left: phone.left,
+              transform: `rotate(${phone.rotate}deg)`,
+              opacity: phone.opacity,
+            }}
+          >
+            <IPhoneIcon size={phone.size} />
           </div>
         ))}
       </div>
