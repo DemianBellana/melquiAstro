@@ -6,30 +6,6 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SOCIAL_LINKS = {
-  instagram: 'https://www.instagram.com/melquigrafias/',
-  tiktok:    'https://www.tiktok.com/@meelqui',
-};
-
-const IconInstagram = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-    <circle cx="12" cy="12" r="4"/>
-    <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
-  </svg>
-);
-
-const IconTikTok = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
-  </svg>
-);
-
-const socialButtons = [
-  { key: 'instagram', Icon: IconInstagram, label: 'Instagram', color: '#E1306C' },
-  { key: 'tiktok',    Icon: IconTikTok,    label: 'TikTok',    color: '#010101' },
-];
-
 // ─── iPhone Frame ────────────────────────────────────────────────────────────
 interface IPhoneFrameProps {
   video: string;
@@ -720,41 +696,13 @@ const VideoWorkSection = () => {
                     style={{
                       fontSize: '0.75rem',
                       color: '#888',
-                      margin: '0 0 12px',
+                      margin: '0',
                       maxWidth: '220px',
                       lineHeight: 1.5,
                     }}
                   >
                     {slide.desc}
                   </p>
-
-                  {/* Social icons */}
-                  <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
-                    {socialButtons.map(({ key, Icon, label, color }) => (
-                      <a
-                        key={key}
-                        href={SOCIAL_LINKS[key as keyof typeof SOCIAL_LINKS]}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={label}
-                        style={{
-                          width: '32px',
-                          height: '32px',
-                          borderRadius: '50%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          background: 'rgba(0,0,0,0.05)',
-                          border: `1px solid ${color}33`,
-                          color: color,
-                          transition: 'transform 0.2s, border-color 0.2s',
-                          textDecoration: 'none',
-                        }}
-                      >
-                        <Icon />
-                      </a>
-                    ))}
-                  </div>
                 </div>
               </div>
             ))}
@@ -844,49 +792,13 @@ const VideoWorkSection = () => {
                   style={{
                     fontSize: '0.75rem',
                     color: '#888',
-                    margin: '0 0 12px',
+                    margin: '0',
                     maxWidth: '180px',
                     lineHeight: 1.5,
                   }}
                 >
                   {cat.desc}
                 </p>
-
-                {/* Social icons */}
-                <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
-                  {socialButtons.map(({ key, Icon, label, color }) => (
-                    <a
-                      key={key}
-                      href={SOCIAL_LINKS[key as keyof typeof SOCIAL_LINKS]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                      style={{
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background: 'rgba(0,0,0,0.05)',
-                        border: `1px solid ${color}33`,
-                        color: color,
-                        transition: 'transform 0.2s, border-color 0.2s',
-                        textDecoration: 'none',
-                      }}
-                      onMouseEnter={e => {
-                        e.currentTarget.style.transform = 'scale(1.15)';
-                        e.currentTarget.style.borderColor = color + '88';
-                      }}
-                      onMouseLeave={e => {
-                        e.currentTarget.style.transform = 'scale(1)';
-                        e.currentTarget.style.borderColor = color + '33';
-                      }}
-                    >
-                      <Icon />
-                    </a>
-                  ))}
-                </div>
               </motion.div>
             </div>
           ))}

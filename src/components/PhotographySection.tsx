@@ -7,29 +7,7 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SOCIAL_LINKS = {
-  instagram: 'https://www.instagram.com/melquigrafias/',
-  tiktok: 'https://www.tiktok.com/@meelqui',
-};
 
-const IconInstagram = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-    <circle cx="12" cy="12" r="4" />
-    <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
-  </svg>
-);
-
-const IconTikTok = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
-  </svg>
-);
-
-const socialButtons = [
-  { key: 'instagram', Icon: IconInstagram, label: 'Instagram', color: '#E1306C' },
-  { key: 'tiktok', Icon: IconTikTok, label: 'TikTok', color: '#010101' },
-];
 
 const categories = [
   {
@@ -223,7 +201,7 @@ const MOBILE_CATEGORIES = [
     src: '/assets/photo/sports/IMG_7085.AVIF',
     label: 'deportes',
     rotation: -6,
-    style: { top: '42%', left: '-2%', width: '35%', zIndex: 25 },
+    style: { top: '26%', left: '-1%', width: '34%', zIndex: 25 },
     tapeStyle: { transform: 'rotate(-4deg)', top: '-8px', width: '45px' }
   },
   {
@@ -231,7 +209,7 @@ const MOBILE_CATEGORIES = [
     src: '/assets/photo/travel/IMG_7130.AVIF',
     label: 'retratos',
     rotation: 4,
-    style: { top: '48%', right: '-2%', width: '35%', zIndex: 25 },
+    style: { top: '29%', right: '-1%', width: '34%', zIndex: 25 },
     tapeStyle: { transform: 'rotate(3deg)', top: '-8px', width: '45px' }
   },
   {
@@ -239,7 +217,7 @@ const MOBILE_CATEGORIES = [
     src: '/assets/photo/travel/IMG_7132.AVIF',
     label: 'eventos',
     rotation: -3,
-    style: { bottom: '12%', left: '1%', width: '34%', zIndex: 25 },
+    style: { top: '46%', left: '1%', width: '34%', zIndex: 25 },
     tapeStyle: { transform: 'rotate(-3deg)', top: '-8px', width: '45px' }
   },
   {
@@ -247,7 +225,7 @@ const MOBILE_CATEGORIES = [
     src: '/assets/photo/travel/IMG_7128.AVIF',
     label: 'todos',
     rotation: 2,
-    style: { bottom: '8%', left: '34%', width: '35%', zIndex: 25 },
+    style: { top: '44%', right: '6%', width: '35%', zIndex: 25 },
     tapeStyle: { transform: 'rotate(2deg)', top: '-8px', width: '45px' }
   }
 ];
@@ -740,7 +718,7 @@ const PhotographySection = () => {
     <section
       id="photography"
       ref={sectionRef}
-      className="relative px-6 py-16 lg:px-16 lg:py-24 overflow-hidden select-none"
+      className="relative px-6 pt-16 pb-8 lg:px-16 lg:pt-24 lg:pb-12 overflow-hidden select-none"
       style={{
         backgroundColor: '#f5efe6',
         backgroundImage: `url("${paperGrainUrl}")`,
@@ -1007,61 +985,67 @@ const PhotographySection = () => {
         </div>
 
         {/* ── MOBILE ── */}
-        <div className="lg:hidden w-full flex flex-col items-center gap-2 px-0 overflow-visible relative">
-          <div className="relative w-full max-w-[420px] h-[980px] mx-auto overflow-visible select-none mt-2">
-
-            {/* Left Title Block */}
-            <div className="absolute top-0 left-4 w-[60%] flex flex-col z-10 text-left">
-              <div className="flex items-center gap-1.5 mb-2">
-                <span className="text-[0.62rem] font-bold tracking-[0.2em] text-[#8c7853] uppercase">PORTAFOLIO</span>
-                <span className="text-dark/40 transform rotate-[45deg] inline-block text-xs">✈</span>
-              </div>
-              <div className="transform -rotate-[3deg] origin-left mb-2 select-none">
-                <p className="text-[#8c7853] text-[1.2rem] font-medium leading-none" style={{ fontFamily: "'Caveat', cursive" }}>
-                  Recuerdos que se quedan ♡
-                </p>
-              </div>
-              <h2 className="font-serif text-[1.7rem] font-light leading-[1.1] text-dark mb-3">
-                Historias que<br />merecen ser<br />
-                <span className="italic text-[#5c6f50]" style={{ fontFamily: "Georgia, serif" }}>recordadas</span>
-              </h2>
-              <p className="text-[0.72rem] font-light leading-[1.5] text-dark/60 font-sans max-w-[22ch] mb-4">
-                Cada imagen guarda un momento único, una emoción sincera, una historia que vale la pena revivir.
-              </p>
-              <div>
-                <button
-                  onClick={() => setSelectedImageIndex(mobileIndex)}
-                  className="px-5 py-2 rounded-full border border-[#8c7853]/35 text-[#8c7853] text-[0.6rem] font-bold tracking-widest uppercase hover:bg-[#8c7853] hover:text-[#f5efe6] transition-all duration-300 cursor-pointer"
-                >
-                  VER GALERÍA →
-                </button>
-              </div>
+        <div className="lg:hidden w-full flex flex-col items-center gap-6 px-0 overflow-visible relative">
+          
+          {/* Bloque de Título */}
+          <div className="w-full px-5 flex flex-col text-left z-10">
+            <div className="flex items-center gap-1.5 mb-2">
+              <span className="text-[0.62rem] font-bold tracking-[0.2em] text-[#8c7853] uppercase">PORTAFOLIO</span>
+              <span className="text-dark/40 transform rotate-[45deg] inline-block text-xs">✈</span>
             </div>
+            <div className="transform -rotate-[1deg] origin-left mb-2 select-none">
+              <p className="text-[#8c7853] text-[1.2rem] font-medium leading-none" style={{ fontFamily: "'Caveat', cursive" }}>
+                Recuerdos que se quedan ♡
+              </p>
+            </div>
+            <h2 className="font-serif text-[1.7rem] font-light leading-[1.1] text-dark mb-3">
+              Historias que<br />merecen ser<br />
+              <span className="italic text-[#5c6f50]" style={{ fontFamily: "Georgia, serif" }}>recordadas</span>
+            </h2>
+            <p className="text-[0.72rem] font-light leading-[1.5] text-dark/60 font-sans max-w-[28ch] mb-4">
+              Cada imagen guarda un momento único, una emoción sincera, una historia que vale la pena revivir.
+            </p>
+            <div>
+              <button
+                onClick={() => setSelectedImageIndex(mobileIndex)}
+                className="px-5 py-2 rounded-full border border-[#8c7853]/35 text-[#8c7853] text-[0.6rem] font-bold tracking-widest uppercase hover:bg-[#8c7853] hover:text-[#f5efe6] transition-all duration-300 cursor-pointer"
+              >
+                VER GALERÍA →
+              </button>
+            </div>
+            <h3 className="font-serif text-[1.15rem] font-light text-dark/80 mt-8 select-none">
+              Categorías
+            </h3>
+          </div>
 
-            {/* Category Polaroids */}
+          {/* Carrusel de Categorías Pequeñas (Scroll Horizontal) */}
+          <div className="w-full overflow-x-auto flex gap-6 px-6 py-6 no-scrollbar snap-x scroll-smooth select-none overflow-y-visible">
             {MOBILE_CATEGORIES.map((cat, idx) => {
               const isActive = activeCategory === cat.category;
+              const rotation = idx % 2 === 0 ? 3 : -3;
               return (
                 <div
                   key={idx}
                   onClick={() => setActiveCategory(cat.category)}
-                  className={`absolute bg-white p-1.5 pb-4 shadow-[0_6px_16px_rgba(0,0,0,0.06)] border border-black/[0.02] cursor-pointer transition-all duration-300 ${isActive ? 'ring-2 ring-[#e02020] ring-offset-2 scale-[1.05] z-30' : 'hover:scale-[1.03]'
-                    }`}
-                  style={{ ...cat.style, transform: `rotate(${cat.rotation}deg)` }}
+                  className={`snap-center shrink-0 bg-white p-1.5 pb-4 shadow-[0_6px_16px_rgba(0,0,0,0.06)] border border-black/[0.02] cursor-pointer transition-all duration-300 w-[110px] relative ${
+                    isActive ? 'ring-2 ring-[#e02020] ring-offset-2 scale-[1.05] z-10' : 'hover:scale-[1.03]'
+                  }`}
+                  style={{ transform: `rotate(${rotation}deg)` }}
                 >
                   <div
                     className="absolute left-1/2 -translate-x-1/2 bg-[#e6ddc2]/90 border border-black/[0.04] shadow-[0_1px_2px_rgba(0,0,0,0.05)]"
                     style={{
-                      height: '14px',
+                      height: '12px',
+                      top: '-6px',
+                      width: '45px',
                       clipPath: 'polygon(5% 0%, 95% 0%, 100% 25%, 98% 75%, 100% 100%, 0% 100%, 2% 50%)',
-                      ...cat.tapeStyle
                     }}
                   />
                   <div className="w-full aspect-[4/5] bg-dark/5 overflow-hidden">
                     <img src={cat.src} alt={cat.label} className="w-full h-full object-cover block" loading="lazy" />
                   </div>
                   <p
-                    className={`text-center mt-1 text-[0.85rem] leading-none select-none font-semibold ${isActive ? 'text-[#e02020]' : 'text-dark/65'}`}
+                    className={`text-center mt-1.5 text-[0.85rem] leading-none select-none font-semibold ${isActive ? 'text-[#e02020]' : 'text-dark/65'}`}
                     style={{ fontFamily: "'Caveat', cursive" }}
                   >
                     {cat.label}
@@ -1069,11 +1053,15 @@ const PhotographySection = () => {
                 </div>
               );
             })}
+          </div>
 
+          {/* Área de la Foto Grande Activa y Estampas */}
+          <div className="relative w-full max-w-[420px] h-[480px] mx-auto overflow-visible select-none mt-2">
+            
             {/* Center Active Card */}
             <div
               className="mobile-polaroid-active absolute bg-white p-3 pb-8 shadow-[0_12px_28px_rgba(0,0,0,0.1)] border border-black/[0.03] z-20 cursor-pointer"
-              style={{ top: '28%', left: '14%', width: '72%', transform: 'rotate(2deg)' }}
+              style={{ top: '6%', left: '14%', width: '72%', transform: 'rotate(2deg)' }}
               onClick={() => setSelectedImageIndex(mobileIndex)}
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
@@ -1097,7 +1085,7 @@ const PhotographySection = () => {
             </div>
 
             {/* Mobile decorative stamps */}
-            <div className="absolute top-[16%] right-[4%] bg-[#faf9f6] px-2.5 py-1 shadow-md border border-black/[0.02] flex items-center gap-1 rotate-[3deg] z-30 font-sans pointer-events-none">
+            <div className="absolute top-[0%] right-[4%] bg-[#faf9f6] px-2.5 py-1 shadow-md border border-black/[0.02] flex items-center gap-1 rotate-[3deg] z-30 font-sans pointer-events-none">
               <svg className="w-3 h-3 text-[#e02020]/80 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
               </svg>
@@ -1120,20 +1108,20 @@ const PhotographySection = () => {
               <span className="text-[0.38rem] font-mono tracking-widest text-[#f5efe6]/60 text-center">34.0522° N, 118.2437° W</span>
             </div>
 
-            <div className="absolute top-[21.5%] right-[1%] w-[58px] h-[58px] rounded-full border border-dashed border-[#5c6f50]/40 bg-[#5c6f50]/5 p-1 flex items-center justify-center transform rotate-[-8deg] opacity-75 z-30 pointer-events-none">
+            <div className="absolute top-[28%] right-[0.5%] w-[54px] h-[54px] rounded-full border border-dashed border-[#5c6f50]/40 bg-[#5c6f50]/5 p-1 flex items-center justify-center transform rotate-[-8deg] opacity-75 z-30 pointer-events-none">
               <div className="absolute inset-0 rounded-full border border-[#5c6f50]/20 flex items-center justify-center">
-                <span className="text-[0.32rem] font-bold tracking-[0.18em] text-[#5c6f50] text-center uppercase leading-none">AVENTURAS<br />SIN LÍMITES</span>
+                <span className="text-[0.3rem] font-bold tracking-[0.15em] text-[#5c6f50] text-center uppercase leading-none">AVENTURAS<br />SIN LÍMITES</span>
               </div>
             </div>
 
-            <div className="absolute top-[61%] left-[2%] w-[52px] h-[52px] rounded-full border border-dashed border-[#8c7853]/45 flex items-center justify-center transform rotate-[10deg] opacity-70 z-30 pointer-events-none">
+            <div className="absolute bottom-[10%] left-[2%] w-[52px] h-[52px] rounded-full border border-dashed border-[#8c7853]/45 flex items-center justify-center transform rotate-[10deg] opacity-70 z-30 pointer-events-none">
               <div className="absolute inset-0.5 rounded-full border border-[#8c7853]/25 flex items-center justify-center">
                 <span className="text-[0.32rem] font-bold tracking-[0.1em] text-[#8c7853] text-center select-none leading-none">COLECCIONA<br />MOMENTOS</span>
               </div>
             </div>
 
             <div
-              className="absolute bottom-[23%] right-[0.5%] bg-[#faf9f6] border border-[#dcd9d0] border-r-2 p-1.5 shadow-md w-[80px] h-[52px] flex flex-col justify-between z-30 pointer-events-none"
+              className="absolute top-[52%] right-[0.5%] bg-[#faf9f6] border border-[#dcd9d0] border-r-2 p-1.5 shadow-md w-[80px] h-[52px] flex flex-col justify-between z-30 pointer-events-none"
               style={{ transform: 'rotate(-4deg)', backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.01) 10px, rgba(0,0,0,0.01) 20px)' }}
             >
               <div className="flex justify-between items-start">
@@ -1145,7 +1133,7 @@ const PhotographySection = () => {
             </div>
 
             <div
-              className="absolute bottom-[26%] left-[12%] bg-[#faf9f6] px-2 py-1 shadow-md border border-black/[0.01] flex items-center gap-1 z-30 pointer-events-none"
+              className="absolute top-[48%] left-[1.5%] bg-[#faf9f6] px-2 py-1 shadow-md border border-black/[0.01] flex items-center gap-1 z-30 pointer-events-none"
               style={{ transform: 'rotate(2deg)' }}
             >
               <span className="text-[0.45rem] font-mono tracking-widest text-dark/65 uppercase leading-none">nuevos horizontes</span>
@@ -1219,31 +1207,6 @@ const PhotographySection = () => {
         </div>
       </div>
 
-      {/* Social links */}
-      <div className="flex items-center justify-center gap-5 mt-20 pt-10 border-t border-[#8c7853]/20 max-w-[1440px] mx-auto z-10 relative">
-        <span className="font-serif italic text-sm text-[#8c7853]">Seguime</span>
-        {socialButtons.map(({ key, Icon, label, color }) => (
-          <a
-            key={key}
-            href={SOCIAL_LINKS[key as keyof typeof SOCIAL_LINKS]}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={label}
-            className="w-10 h-10 rounded-full flex items-center justify-center transition-transform duration-200 cursor-pointer"
-            style={{ color, border: `1px solid ${color}33`, backgroundColor: 'rgba(255,255,255,0.2)' }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLElement).style.borderColor = color + '88';
-              (e.currentTarget as HTMLElement).style.transform = 'scale(1.15) translateY(-2px)';
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLElement).style.borderColor = color + '33';
-              (e.currentTarget as HTMLElement).style.transform = 'scale(1) translateY(0)';
-            }}
-          >
-            <Icon />
-          </a>
-        ))}
-      </div>
 
       {/* ── LIGHTBOX ── */}
       <AnimatePresence>
