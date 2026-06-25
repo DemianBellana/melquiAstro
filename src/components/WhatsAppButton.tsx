@@ -4,24 +4,17 @@ const WhatsAppButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const heroElement = document.getElementById('inicio');
-    if (!heroElement) {
-      setIsVisible(true);
-      return;
-    }
+    const handleScroll = () => {
+      // Si el scroll supera el 40% del alto de la ventana, mostramos el botón
+      const threshold = window.innerHeight * 0.4;
+      setIsVisible(window.scrollY > threshold);
+    };
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(!entry.isIntersecting);
-      },
-      {
-        root: null,
-        threshold: 0.5, // Aparece cuando el Hero se ha scrolleado un 50% fuera de vista
-      }
-    );
+    // Ejecución inicial
+    handleScroll();
 
-    observer.observe(heroElement);
-    return () => observer.unobserve(heroElement);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   if (!isVisible) return null;
