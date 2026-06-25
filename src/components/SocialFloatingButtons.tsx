@@ -20,11 +20,24 @@ const SocialFloatingButtons = () => {
   const [isInFooter, setIsInFooter] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const heroElement = document.getElementById('inicio');
+    if (!heroElement) {
       setIsVisible(true);
-    }, 1200); // 1.2 segundos de demora para entrada elegante
+      return;
+    }
 
-    return () => clearTimeout(timer);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(!entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.5, // Aparece cuando el Hero se ha scrolleado un 50% fuera de vista
+      }
+    );
+
+    observer.observe(heroElement);
+    return () => observer.unobserve(heroElement);
   }, []);
 
   useEffect(() => {

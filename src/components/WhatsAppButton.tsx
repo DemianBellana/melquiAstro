@@ -4,11 +4,24 @@ const WhatsAppButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const heroElement = document.getElementById('inicio');
+    if (!heroElement) {
       setIsVisible(true);
-    }, 2000); // Demora de 2 segundos en aparecer
+      return;
+    }
 
-    return () => clearTimeout(timer);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(!entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.5, // Aparece cuando el Hero se ha scrolleado un 50% fuera de vista
+      }
+    );
+
+    observer.observe(heroElement);
+    return () => observer.unobserve(heroElement);
   }, []);
 
   if (!isVisible) return null;
