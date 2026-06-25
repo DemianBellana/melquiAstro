@@ -63,7 +63,7 @@ const Hero = () => {
       <div className="relative z-20 text-center text-white px-4 perspective-1000">
 
 
-        <h1 className="font-serif text-[clamp(3rem,7vw,6.5rem)] font-light italic leading-[1.08] mb-6 overflow-hidden">
+        <h1 className="font-serif text-[clamp(3rem,7vw,6.5rem)] font-light italic leading-[1.08] mb-6 overflow-hidden min-[1440px]:w-[30%] mx-auto">
           <div className="flex justify-center flex-wrap">
             {renderLetters('Video Editor &', 'char-left')}
           </div>
