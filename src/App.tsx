@@ -7,6 +7,7 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import SocialFloatingButtons from './components/SocialFloatingButtons'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <SocialFloatingButtons />
     </div>
   )
 }
