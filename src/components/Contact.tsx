@@ -55,6 +55,40 @@ const Contact = () => {
               </strong>
               <a href="mailto:melisaquiroga@gmail.com" className="hover:text-[#D8B7B0] transition-colors text-xl">melisaquiroga@gmail.com</a>
             </div>
+
+            <a
+              href="mailto:melisaquiroga@gmail.com"
+              className="group relative overflow-hidden flex items-center gap-3
+                         bg-[#ff4d6d] border border-[#ff4d6d] rounded-full
+                         px-8 py-3.5
+                         font-sans text-[10px] tracking-[0.22em] uppercase text-white
+                         transition-all duration-400 ease-out
+                         hover:bg-[#e03d5a] hover:border-[#e03d5a]
+                         cursor-pointer shadow-lg"
+            >
+              {/* fill on hover */}
+              <span
+                className="absolute inset-0 rounded-full bg-white/5
+                           -translate-x-full transition-transform duration-500
+                           ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
+                           group-hover:translate-x-0"
+              />
+
+              <span className="relative z-10">
+                Contactame
+              </span>
+
+              {/* arrow */}
+              <span className="relative z-10 flex items-center">
+                <span
+                  className="block h-px bg-white/60 transition-all duration-300 ease-out w-3.5 group-hover:w-5 group-hover:bg-white"
+                />
+                <span
+                  className="block w-[5px] h-[5px] border-t border-r border-white/60 rotate-45 -ml-[3px]
+                             transition-transform duration-300 group-hover:translate-x-[2px] group-hover:border-white"
+                />
+              </span>
+            </a>
           </div>
         </div>
       </div>
