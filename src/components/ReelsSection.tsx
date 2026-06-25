@@ -103,7 +103,7 @@ const ReelsSection = () => {
             01. Edición de Reels
           </span>
           <h2 className="font-serif text-[clamp(2rem,3.5vw,3.2rem)] md:text-[clamp(2.5rem,4.5vw,3.8rem)] lg:text-[clamp(2.6rem,_calc(0.165_*_30cqw),_4.2rem)] font-light leading-[1.18] text-[#161616] mb-6">
-            Contenido que<br /><em className="italic text-white">atrapa en segundos</em>
+            Contenido que<br /><em className="italic text-[#8c7853]">atrapa en segundos</em>
           </h2>
           <p className="text-[0.88rem] md:text-[1.1rem] lg:text-[clamp(1.1rem,_calc(0.058_*_30cqw),_1.3rem)] font-light leading-[1.85] text-[#161616] opacity-80 max-w-[42ch] mb-9 mx-0 md:mx-auto lg:mx-0">
             Edición dinámica pensada para el formato vertical. Transiciones fluidas, ritmo visual y storytelling condensado para maximizar el engagement en plataformas como Instagram y TikTok.
