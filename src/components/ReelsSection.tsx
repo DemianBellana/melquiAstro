@@ -33,9 +33,8 @@ const IPhoneIcon = ({ size }: { size: number }) => (
     strokeLinecap="round" 
     strokeLinejoin="round"
   >
-    <rect x="5" y="2" width="14" height="20" rx="2.5" />
-    <rect x="10" y="4.5" width="4" height="1" rx="0.5" fill="currentColor" stroke="none" />
-    <line x1="10" y1="20" x2="14" y2="20" strokeWidth="1.2" />
+    <rect x="6.5" y="1.5" width="11" height="21" rx="2.2" />
+    <rect x="10" y="3.5" width="4" height="1" rx="0.5" fill="currentColor" stroke="none" />
   </svg>
 );
 
