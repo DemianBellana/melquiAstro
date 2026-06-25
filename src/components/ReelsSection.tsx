@@ -6,26 +6,31 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const VideoCameraIcon = ({ size }: { size: number }) => (
+const PhotoCameraIcon = ({ size }: { size: number }) => (
   <svg 
     width={size} 
     height={size} 
     viewBox="0 0 24 24" 
-    fill="currentColor"
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="1.6" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
   >
-    <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
+    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+    <circle cx="12" cy="13" r="4" />
   </svg>
 );
 
 const backgroundCameras = [
-  { top: '8%', left: '6%', size: 48, rotate: -15, opacity: 0.08 },
-  { top: '22%', left: '44%', size: 68, rotate: 12, opacity: 0.05 },
-  { top: '78%', left: '12%', size: 58, rotate: -8, opacity: 0.07 },
-  { top: '88%', left: '46%', size: 42, rotate: 25, opacity: 0.06 },
-  { top: '12%', left: '82%', size: 76, rotate: 18, opacity: 0.05 },
-  { top: '48%', left: '74%', size: 54, rotate: -22, opacity: 0.08 },
-  { top: '84%', left: '86%', size: 64, rotate: 10, opacity: 0.06 },
-  { top: '56%', left: '4%', size: 46, rotate: -5, opacity: 0.07 },
+  { top: '8%', left: '6%', size: 48, rotate: -15, opacity: 0.22 },
+  { top: '22%', left: '44%', size: 68, rotate: 12, opacity: 0.18 },
+  { top: '78%', left: '12%', size: 58, rotate: -8, opacity: 0.20 },
+  { top: '88%', left: '46%', size: 42, rotate: 25, opacity: 0.18 },
+  { top: '12%', left: '82%', size: 76, rotate: 18, opacity: 0.16 },
+  { top: '48%', left: '74%', size: 54, rotate: -22, opacity: 0.24 },
+  { top: '84%', left: '86%', size: 64, rotate: 10, opacity: 0.18 },
+  { top: '56%', left: '4%', size: 46, rotate: -5, opacity: 0.20 },
 ];
 
 const ReelsSection = () => {
@@ -128,7 +133,7 @@ const ReelsSection = () => {
               opacity: cam.opacity,
             }}
           >
-            <VideoCameraIcon size={cam.size} />
+            <PhotoCameraIcon size={cam.size} />
           </div>
         ))}
       </div>
