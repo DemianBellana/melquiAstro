@@ -986,7 +986,7 @@ const PhotographySection = () => {
 
         {/* ── MOBILE ── */}
         <div className="lg:hidden w-full flex flex-col items-center gap-6 px-0 overflow-visible relative">
-          
+
           {/* Bloque de Título */}
           <div className="w-full px-5 flex flex-col text-left z-10">
             <div className="flex items-center gap-1.5 mb-2">
@@ -1013,7 +1013,7 @@ const PhotographySection = () => {
                 VER GALERÍA →
               </button>
             </div>
-            <h3 className="font-serif text-[1.15rem] font-light text-dark/80 mt-8 select-none">
+            <h3 className="font-serif text-[1.30rem] font-light text-dark/80 mt-8 select-none">
               Categorías
             </h3>
           </div>
@@ -1027,9 +1027,8 @@ const PhotographySection = () => {
                 <div
                   key={idx}
                   onClick={() => setActiveCategory(cat.category)}
-                  className={`snap-center shrink-0 bg-white p-1.5 pb-4 shadow-[0_6px_16px_rgba(0,0,0,0.06)] border border-black/[0.02] cursor-pointer transition-all duration-300 w-[110px] relative ${
-                    isActive ? 'ring-2 ring-[#e02020] ring-offset-2 scale-[1.05] z-10' : 'hover:scale-[1.03]'
-                  }`}
+                  className={`snap-center shrink-0 bg-white p-1.5 pb-4 shadow-[0_6px_16px_rgba(0,0,0,0.06)] border border-black/[0.02] cursor-pointer transition-all duration-300 w-[110px] relative ${isActive ? 'ring-2 ring-[#e02020] ring-offset-2 scale-[1.05] z-10' : 'hover:scale-[1.03]'
+                    }`}
                   style={{ transform: `rotate(${rotation}deg)` }}
                 >
                   <div
@@ -1057,7 +1056,7 @@ const PhotographySection = () => {
 
           {/* Área de la Foto Grande Activa y Estampas */}
           <div className="relative w-full max-w-[420px] h-[480px] mx-auto overflow-visible select-none mt-2">
-            
+
             {/* Center Active Card */}
             <div
               className="mobile-polaroid-active absolute bg-white p-3 pb-8 shadow-[0_12px_28px_rgba(0,0,0,0.1)] border border-black/[0.03] z-20 cursor-pointer"

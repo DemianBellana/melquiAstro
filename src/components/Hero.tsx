@@ -17,11 +17,11 @@ const Hero = () => {
       duration: 1, stagger: 0.03, ease: 'power3.out', delay: 0.5,
     });
 
-    gsap.fromTo('.hero-badge', 
+    gsap.fromTo('.hero-badge',
       { y: 20, opacity: 0, scale: 0.9 },
       { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'power2.out', delay: 1.2 }
     );
-    gsap.fromTo('.hero-cta', 
+    gsap.fromTo('.hero-cta',
       { y: 20, opacity: 0, scale: 0.95 },
       { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'power2.out', delay: 1.5 }
     );
@@ -72,7 +72,7 @@ const Hero = () => {
           </div>
         </h1>
 
-        <div className="hero-badge opacity-0 inline-flex items-center gap-2 sm:gap-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 sm:px-5 sm:py-1.5 text-white/90 text-[10px] sm:text-[11px] tracking-[0.05em] sm:tracking-[0.22em] uppercase shadow-lg whitespace-nowrap mb-7">
+        <div className="hero-badge opacity-0 inline-flex items-center gap-2 sm:gap-3 bg-green/40 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 sm:px-5 sm:py-1.5 text-white/90 text-[10px] sm:text-[11px] tracking-[0.05em] sm:tracking-[0.22em] uppercase shadow-lg whitespace-nowrap mb-7">
           Dinámica &amp; Creatividad · Historias que impactan
           <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-[#7C8F7A] animate-pulse" />
         </div>

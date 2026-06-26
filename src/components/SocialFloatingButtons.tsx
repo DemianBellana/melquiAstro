@@ -57,7 +57,8 @@ const SocialFloatingButtons = () => {
 
   if (!isVisible) return null;
 
-  const solapaBgColor = isInFooter ? '#1a1714' : '#707f6a';
+  const solapaBgColor = isInFooter ? '#d8b7af' : '#707f6a';
+  const solapaTextColor = isInFooter ? '#1a1714' : '#E8E2D8';
 
   return (
     <>
@@ -125,13 +126,14 @@ const SocialFloatingButtons = () => {
         {/* Solapita Vertical */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="absolute right-0 flex flex-col items-center justify-center gap-2 py-3.5 px-1.5 text-[#E8E2D8] border-l border-y border-white/20 rounded-l-xl shadow-lg focus:outline-none active:opacity-90"
+          className="absolute right-0 flex flex-col items-center justify-center gap-2 py-3.5 px-1.5 border-l border-y border-white/20 rounded-l-xl shadow-lg focus:outline-none active:opacity-90"
           style={{ 
             backgroundColor: solapaBgColor,
+            color: solapaTextColor,
             transition: 'background-color 0.6s ease-in-out, color 0.6s ease-in-out'
           }}
         >
-          <span className="[writing-mode:vertical-lr] rotate-180 text-[8.5px] font-semibold tracking-[0.25em] text-[#E8E2D8]/95">
+          <span className="[writing-mode:vertical-lr] rotate-180 text-[8.5px] font-semibold tracking-[0.25em] opacity-95">
             REDES
           </span>
           <svg 

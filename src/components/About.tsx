@@ -1,6 +1,60 @@
 import { useState, useRef } from 'react';
 import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion';
 
+const PhotoCameraIcon = ({ size }: { size: number }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="1.6" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+    <circle cx="12" cy="13" r="4" />
+  </svg>
+);
+
+const IPhoneIcon = ({ size }: { size: number }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="1.6" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <rect x="6.5" y="1.5" width="11" height="21" rx="2.2" />
+    <rect x="10" y="3.5" width="4" height="1" rx="0.5" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+const backgroundCameras = [
+  { top: '8%', left: '6%', size: 64, rotate: -15, opacity: 0.42 },
+  { top: '22%', left: '44%', size: 88, rotate: 12, opacity: 0.35 },
+  { top: '78%', left: '12%', size: 76, rotate: -8, opacity: 0.40 },
+  { top: '88%', left: '46%', size: 56, rotate: 25, opacity: 0.38 },
+  { top: '12%', left: '82%', size: 98, rotate: 18, opacity: 0.32 },
+  { top: '48%', left: '74%', size: 72, rotate: -22, opacity: 0.45 },
+  { top: '84%', left: '86%', size: 84, rotate: 10, opacity: 0.35 },
+  { top: '56%', left: '4%', size: 60, rotate: -5, opacity: 0.40 },
+];
+
+const backgroundPhones = [
+  { top: '35%', left: '18%', size: 64, rotate: 15, opacity: 0.38 },
+  { top: '5%', left: '30%', size: 88, rotate: -12, opacity: 0.32 },
+  { top: '88%', left: '28%', size: 76, rotate: 20, opacity: 0.40 },
+  { top: '55%', left: '42%', size: 56, rotate: -18, opacity: 0.35 },
+  { top: '32%', left: '90%', size: 98, rotate: -25, opacity: 0.34 },
+  { top: '70%', left: '64%', size: 72, rotate: 12, opacity: 0.42 },
+  { top: '15%', left: '60%', size: 84, rotate: -8, opacity: 0.36 },
+  { top: '92%', left: '72%', size: 60, rotate: 15, opacity: 0.38 },
+];
+
 const About = () => {
   const frameRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -43,10 +97,42 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="grid grid-cols-1 lg:grid-cols-2 min-h-[85vh] bg-[#D8B7B0] overflow-hidden @container">
+    <section id="about" className="grid grid-cols-1 lg:grid-cols-2 min-h-[85vh] bg-[#D8B7B0] overflow-hidden @container relative">
+
+      {/* Background Decorative Cameras & Phones (Desktop only) */}
+      <div className="hidden lg:block absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {backgroundCameras.map((cam, idx) => (
+          <div
+            key={`cam-${idx}`}
+            className="absolute text-white transition-transform duration-300"
+            style={{
+              top: cam.top,
+              left: cam.left,
+              transform: `rotate(${cam.rotate}deg)`,
+              opacity: cam.opacity,
+            }}
+          >
+            <PhotoCameraIcon size={cam.size} />
+          </div>
+        ))}
+        {backgroundPhones.map((phone, idx) => (
+          <div
+            key={`phone-${idx}`}
+            className="absolute text-white transition-transform duration-300"
+            style={{
+              top: phone.top,
+              left: phone.left,
+              transform: `rotate(${phone.rotate}deg)`,
+              opacity: phone.opacity,
+            }}
+          >
+            <IPhoneIcon size={phone.size} />
+          </div>
+        ))}
+      </div>
 
       {/* Columna Izquierda: iPhone CSS puro igual que VideoWork */}
-      <div className="relative flex items-center justify-center py-20 lg:py-0 bg-[#D8B7B0]">
+      <div className="relative flex items-center justify-center py-20 lg:py-0">
 
         <motion.div
           ref={frameRef}
@@ -189,7 +275,7 @@ const About = () => {
       </div>
 
       {/* Columna Derecha: Texto */}
-      <div className="flex flex-col justify-center items-start md:items-center lg:items-start text-left md:text-center lg:text-left px-6 py-14 lg:px-24 lg:py-24 text-[#161616] bg-[#D8B7B0] relative z-10">
+      <div className="flex flex-col justify-center items-start md:items-center lg:items-start text-left md:text-center lg:text-left px-6 py-14 lg:px-24 lg:py-24 text-[#161616] relative z-10">
         <span className="text-[clamp(0.8rem,_calc(0.04_*_30cqw),_0.95rem)] font-bold tracking-[0.28em] uppercase text-[#161616] opacity-70 mb-6">
           Sobre Mí
         </span>
