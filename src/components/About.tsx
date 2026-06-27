@@ -283,11 +283,14 @@ const About = () => {
           Melisa <em className="italic text-white">Quiroga</em>
         </h2>
         <div className="space-y-6">
-          <p className="text-[clamp(1.1rem,_calc(0.058_*_30cqw),_1.3rem)] font-light leading-[1.8] text-[#161616] opacity-80 max-w-[45ch] mx-0 md:mx-auto lg:mx-0">
-            Soy editora de video y creadora de contenido apasionada por contar historias visuales que conecten. Mi enfoque combina técnica cinematográfica con un ritmo dinámico adaptado a las tendencias actuales.
+          <p className="text-[clamp(1.05rem,_calc(0.052_*_30cqw),_1.18rem)] font-light leading-[1.8] text-[#161616] opacity-85 max-w-[52ch] mx-0 md:mx-auto lg:mx-0">
+            Soy Melisa Quiroga, fotógrafa, videógrafa y editora audiovisual.
           </p>
-          <p className="text-[clamp(1.1rem,_calc(0.058_*_30cqw),_1.3rem)] font-light leading-[1.8] text-[#161616] opacity-80 max-w-[45ch] mx-0 md:mx-auto lg:mx-0">
-            Desde la captura aérea con drones hasta la edición minuciosa de reels, busco siempre la excelencia visual y narrativa en cada proyecto en el que participo.
+          <p className="text-[clamp(1.05rem,_calc(0.052_*_30cqw),_1.18rem)] font-light leading-[1.8] text-[#161616] opacity-85 max-w-[52ch] mx-0 md:mx-auto lg:mx-0">
+            Me especializo en crear contenido visual que transmite emociones, fortalece marcas y convierte momentos en historias. Cada proyecto lo abordo con una mirada creativa, cuidando tanto la estética como los detalles que hacen la diferencia.
+          </p>
+          <p className="text-[clamp(1.05rem,_calc(0.052_*_30cqw),_1.18rem)] font-light leading-[1.8] text-[#161616] opacity-85 max-w-[52ch] mx-0 md:mx-auto lg:mx-0">
+            Trabajo con personas, emprendimientos y empresas que buscan contenido auténtico, profesional y pensado para generar impacto. Ya sea una cobertura fotográfica, un reel o un video, mi objetivo es entregar piezas que representen la esencia de cada cliente con una identidad visual sólida y una edición de calidad.
           </p>
         </div>
         <div className="mt-14 flex items-center gap-5 justify-start md:justify-center lg:justify-start">

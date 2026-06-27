@@ -1095,16 +1095,6 @@ const PhotographySection = () => {
             </div>
 
             {/* Mobile decorative stamps */}
-            <div className="absolute top-[0%] right-[4%] bg-[#faf9f6] px-2.5 py-1 shadow-md border border-black/[0.02] flex items-center gap-1 rotate-[3deg] z-30 font-sans pointer-events-none">
-              <svg className="w-3 h-3 text-[#e02020]/80 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-              </svg>
-              <div className="flex flex-col">
-                <span className="text-[0.55rem] font-bold text-dark/75 leading-none">playa paraíso</span>
-                <span className="text-[0.45rem] font-mono text-dark/40 tracking-wider uppercase leading-none mt-0.5">TULUM, MX</span>
-              </div>
-            </div>
-
             <div
               className="absolute bottom-[2%] right-[4%] bg-[#6e775a] text-[#f5efe6] px-2.5 py-2.5 w-[130px] shadow-lg flex flex-col font-sans z-30 pointer-events-none"
               style={{ transform: 'rotate(3deg)' }}
@@ -1118,35 +1108,10 @@ const PhotographySection = () => {
               <span className="text-[0.38rem] font-mono tracking-widest text-[#f5efe6]/60 text-center">34.0522° N, 118.2437° W</span>
             </div>
 
-            <div className="absolute top-[28%] right-[0.5%] w-[54px] h-[54px] rounded-full border border-dashed border-[#5c6f50]/40 bg-[#5c6f50]/5 p-1 flex items-center justify-center transform rotate-[-8deg] opacity-75 z-30 pointer-events-none">
-              <div className="absolute inset-0 rounded-full border border-[#5c6f50]/20 flex items-center justify-center">
-                <span className="text-[0.3rem] font-bold tracking-[0.15em] text-[#5c6f50] text-center uppercase leading-none">AVENTURAS<br />SIN LÍMITES</span>
-              </div>
-            </div>
-
             <div className="absolute bottom-[10%] left-[2%] w-[52px] h-[52px] rounded-full border border-dashed border-[#8c7853]/45 flex items-center justify-center transform rotate-[10deg] opacity-70 z-30 pointer-events-none">
               <div className="absolute inset-0.5 rounded-full border border-[#8c7853]/25 flex items-center justify-center">
                 <span className="text-[0.32rem] font-bold tracking-[0.1em] text-[#8c7853] text-center select-none leading-none">COLECCIONA<br />MOMENTOS</span>
               </div>
-            </div>
-
-            <div
-              className="absolute top-[52%] right-[0.5%] bg-[#faf9f6] border border-[#dcd9d0] border-r-2 p-1.5 shadow-md w-[80px] h-[52px] flex flex-col justify-between z-30 pointer-events-none"
-              style={{ transform: 'rotate(-4deg)', backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.01) 10px, rgba(0,0,0,0.01) 20px)' }}
-            >
-              <div className="flex justify-between items-start">
-                <span className="text-[0.3rem] font-mono tracking-widest text-dark/30 uppercase">DESTINOS</span>
-              </div>
-              <div className="border-t border-dark/10 pt-0.5 flex justify-between items-center text-[0.28rem] font-mono text-dark/30 tracking-widest uppercase">
-                <span>QUE SE VIVEN</span>
-              </div>
-            </div>
-
-            <div
-              className="absolute top-[48%] left-[1.5%] bg-[#faf9f6] px-2 py-1 shadow-md border border-black/[0.01] flex items-center gap-1 z-30 pointer-events-none"
-              style={{ transform: 'rotate(2deg)' }}
-            >
-              <span className="text-[0.45rem] font-mono tracking-widest text-dark/65 uppercase leading-none">nuevos horizontes</span>
             </div>
 
             <div className="absolute bottom-0 left-0 w-[180px] h-[180px] text-[#4a5538] pointer-events-none select-none opacity-[0.06] blur-[6px] z-30 overflow-hidden">

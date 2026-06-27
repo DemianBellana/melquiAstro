@@ -23,14 +23,14 @@ const Contact = () => {
 
       <div className="relative z-10 max-w-[800px] mx-auto text-center w-full flex flex-col items-center justify-center">
         <div className="text-white flex flex-col items-center">
-          <span className="text-[0.95rem] font-light tracking-[0.28em] uppercase text-white/70 mb-6 block">
-            Contacto
-          </span>
           <h2 className="font-serif text-[clamp(2.5rem,4vw,3.8rem)] font-light leading-[1.12] text-white mt-4 mb-6 text-center">
-            ¿Hablamos sobre<br /><em className="italic text-[#D8B7B0]">tu próximo proyecto?</em>
+            ¿Creamos algo <em className="italic text-[#D8B7B0]">juntos?</em>
           </h2>
-          <p className="text-[1rem] font-light leading-[1.8] text-white/80 max-w-[42ch] mb-10 text-center">
-            Cada marca tiene una historia única. Contame la tuya y creemos fotografías y videos que conecten, inspiren y dejen una impresión inolvidable. Respondo en menos de 24 horas.
+          <p className="text-[1rem] font-light leading-[1.8] text-white/80 max-w-[48ch] mb-10 text-center">
+            Creo en el poder de las imágenes para contar historias y generar emociones. Si estás buscando fotografía, video o contenido para tu proyecto, estaré encantada de acompañarte en el proceso.
+            <span className="block mt-4 text-white/90">
+              Contame tu idea y armemos algo único. Respondo en menos de 24 horas
+            </span>
           </p>
 
           <div className="flex flex-col gap-8 justify-center items-center mt-6">
