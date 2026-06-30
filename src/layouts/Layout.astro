@@ -1,5 +1,19 @@
+---
+import '../index.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Melisa Quiroga Photography", 
+  description = "Melisa Quiroga - Video Editor & Content Creator. Historias que impactan." 
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
@@ -8,25 +22,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- SEO & Previsualización de Enlace (Open Graph) -->
-    <title>Melisa Quiroga Photography</title>
-    <meta name="description" content="Melisa Quiroga - Video Editor & Content Creator. Historias que impactan." />
+    <title>{title}</title>
+    <meta name="description" content={description} />
     
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://melquigrafias.com/" />
-    <meta property="og:title" content="Melisa Quiroga Photography" />
-    <meta property="og:description" content="Video Editor & Content Creator. Historias que impactan." />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:image" content="https://melquigrafias.com/og-image.jpg" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://melquigrafias.com/" />
-    <meta property="twitter:title" content="Melisa Quiroga Photography" />
-    <meta property="twitter:description" content="Video Editor & Content Creator. Historias que impactan." />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="https://melquigrafias.com/og-image.jpg" />
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&family=Caveat:wght@400;700&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <slot />
   </body>
 </html>

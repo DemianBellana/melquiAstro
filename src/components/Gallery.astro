@@ -1,0 +1,213 @@
+---
+const photos = [
+  {
+    url: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1200&auto=format&fit=crop&q=80',
+    caption: 'Golden hour ceremony',
+    className: 'lg:col-span-2 aspect-[16/10]'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&auto=format&fit=crop&q=80',
+    caption: 'Bridal portrait',
+    className: 'aspect-[3/4]'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1464061884326-64f6d5e13e4a?w=800&auto=format&fit=crop&q=80',
+    caption: 'Nova Scotia elopement',
+    className: 'aspect-[3/4]'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800&auto=format&fit=crop&q=80',
+    caption: 'Candid reception',
+    className: 'aspect-[3/4]'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&auto=format&fit=crop&q=80',
+    caption: 'First dance',
+    className: 'lg:col-span-2 aspect-[16/10]'
+  }
+];
+---
+
+<section class="px-6 py-14 lg:px-16 lg:py-24 bg-warm-white" id="portfolio">
+  <div class="text-center mb-14">
+    <span class="text-[0.62rem] font-light tracking-[0.28em] uppercase text-accent mb-6">
+      Portfolio
+    </span>
+    <h2 class="font-serif text-[clamp(2rem,3.5vw,3.2rem)] font-light leading-[1.18] text-dark mt-4">
+      Love stories<br /><em class="italic">in every frame</em>
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-2.5">
+    {photos.map((photo, index) => (
+      <div 
+        class="gallery-item relative overflow-hidden cursor-pointer group"
+        class:list={[photo.className]}
+        data-index={index}
+      >
+        <img 
+          src={photo.url} 
+          alt={photo.caption} 
+          loading="lazy"
+          class="w-full h-full object-cover block transition-transform duration-700 ease-in-out brightness-[0.97] saturate-[0.92] group-hover:scale-[1.04]"
+        />
+        <div class="absolute inset-0 bg-[rgba(20,17,14,0)] flex items-end p-6 transition-colors duration-300 group-hover:bg-[rgba(20,17,14,0.28)]">
+          <span class="font-serif text-[1rem] italic font-light text-[rgba(255,255,255,0)] transition-colors duration-300 group-hover:text-[rgba(255,255,255,0.9)]">
+            {photo.caption}
+          </span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="text-center mt-12">
+    <a 
+      href="#" 
+      class="inline-flex items-center gap-2 text-[0.68rem] font-light tracking-[0.18em] uppercase text-dark no-underline border-b border-accent pb-1 transition-all duration-200 hover:text-accent group"
+    >
+      View Full Gallery
+      <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+    </a>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div 
+    id="gallery-lightbox"
+    class="fixed inset-0 z-[100] bg-black/95 hidden items-center justify-center p-4 lg:p-10 select-none opacity-0 transition-opacity duration-300"
+  >
+    <button 
+      id="lightbox-close"
+      class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-[110]"
+      aria-label="Cerrar galería"
+    >
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <button 
+      id="lightbox-prev"
+      class="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-[110] bg-black/20 p-2 rounded-full"
+      aria-label="Imagen anterior"
+    >
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <button 
+      id="lightbox-next"
+      class="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-[110] bg-black/20 p-2 rounded-full"
+      aria-label="Imagen siguiente"
+    >
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <div 
+      id="lightbox-content"
+      class="relative max-w-full max-h-full flex flex-col items-center transform scale-95 opacity-0 transition-all duration-300"
+    >
+      <img 
+        id="lightbox-img"
+        src="" 
+        alt=""
+        class="max-w-full max-h-[85vh] object-contain shadow-2xl"
+      />
+      <p 
+        id="lightbox-caption"
+        class="text-white/80 font-serif italic text-lg mt-6"
+      ></p>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ photos }}>
+  const lightbox = document.getElementById('gallery-lightbox');
+  const lightboxContent = document.getElementById('lightbox-content');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const closeBtn = document.getElementById('lightbox-close');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+  const items = document.querySelectorAll('.gallery-item');
+
+  let currentIndex = null;
+
+  const showImage = (index) => {
+    currentIndex = index;
+    const photo = photos[index];
+    if (lightboxImg && lightboxCaption) {
+      lightboxImg.src = photo.url;
+      lightboxImg.alt = photo.caption;
+      lightboxCaption.textContent = photo.caption;
+    }
+  };
+
+  const openLightbox = (index) => {
+    showImage(index);
+    if (lightbox && lightboxContent) {
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      // Forzar reflow para animación CSS
+      setTimeout(() => {
+        lightbox.classList.remove('opacity-0');
+        lightboxContent.classList.remove('scale-95', 'opacity-0');
+      }, 10);
+    }
+  };
+
+  const closeLightbox = () => {
+    if (lightbox && lightboxContent) {
+      lightbox.classList.add('opacity-0');
+      lightboxContent.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        lightbox.classList.remove('flex');
+        lightbox.classList.add('hidden');
+        currentIndex = null;
+      }, 300);
+    }
+  };
+
+  const navigate = (direction) => {
+    if (currentIndex === null) return;
+    const nextIndex = direction === 'next'
+      ? (currentIndex + 1) % photos.length
+      : (currentIndex - 1 + photos.length) % photos.length;
+    
+    // Leve animación de salida/entrada
+    if (lightboxContent) {
+      lightboxContent.classList.add('opacity-0', 'scale-95');
+      setTimeout(() => {
+        showImage(nextIndex);
+        lightboxContent.classList.remove('opacity-0', 'scale-95');
+      }, 150);
+    }
+  };
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const index = parseInt(item.getAttribute('data-index') || '0', 10);
+      openLightbox(index);
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeLightbox);
+  prevBtn?.addEventListener('click', () => navigate('prev'));
+  nextBtn?.addEventListener('click', () => navigate('next'));
+
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (currentIndex === null) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') navigate('next');
+    if (e.key === 'ArrowLeft') navigate('prev');
+  });
+</script>

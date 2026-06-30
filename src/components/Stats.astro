@@ -1,0 +1,20 @@
+---
+const stats = [
+  { number: '5+', label: 'Years in business' },
+  { number: '200+', label: 'Weddings captured' },
+  { number: '∞', label: 'Memories preserved' },
+];
+---
+
+<section class="bg-dark px-6 py-14 lg:px-16 lg:py-20 grid grid-cols-1 lg:grid-cols-3 text-center gap-10">
+  {stats.map((stat) => (
+    <div>
+      <div class="font-serif text-[4rem] font-light text-white leading-none">
+        {stat.number}
+      </div>
+      <p class="text-[0.68rem] font-extralight tracking-[0.22em] uppercase text-[rgba(255,255,255,0.45)] mt-3">
+        {stat.label}
+      </p>
+    </div>
+  ))}
+</section>

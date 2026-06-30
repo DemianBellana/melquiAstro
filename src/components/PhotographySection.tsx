@@ -341,7 +341,14 @@ const handlePolaroidLeave = (e: React.MouseEvent<HTMLDivElement>) => {
 const PhotographySection = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('Featured');
+  const [imageLoading, setImageLoading] = useState<boolean>(true);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (selectedImageIndex !== null) {
+      setImageLoading(true);
+    }
+  }, [selectedImageIndex]);
 
   useEffect(() => {
     const isLargeScreen = window.innerWidth >= 1025;
@@ -1229,10 +1236,18 @@ const PhotographySection = () => {
                 className="relative max-w-full max-h-full flex flex-col items-center"
                 onClick={(e) => e.stopPropagation()}
               >
+                {imageLoading && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm z-[60] min-h-[300px] w-full">
+                    <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin mb-3" />
+                    <span className="text-white/80 font-sans text-xs tracking-wider uppercase animate-pulse">Cargando foto...</span>
+                  </div>
+                )}
                 <img
                   src={visiblePhotos[selectedImageIndex]}
                   alt="Selected"
+                  onLoad={() => setImageLoading(false)}
                   className="max-w-full max-h-[75vh] lg:max-h-[82vh] object-contain shadow-2xl rounded-sm"
+                  style={{ opacity: imageLoading ? 0.3 : 1, transition: 'opacity 0.3s ease' }}
                 />
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}

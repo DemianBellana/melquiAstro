@@ -187,12 +187,14 @@ const About = () => {
                   autoPlay
                   loop
                   muted={isMuted}
+                  preload="metadata"
+                  poster="/herovideo_melisa_poster.jpg"
                   playsInline
                   onPlay={() => setPlaying(true)}
                   onPause={() => setPlaying(false)}
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', cursor: 'pointer' }}
                 >
-                  <source src="/herovideo_melisa.mov" type="video/mp4" />
+                  <source src="/herovideo_melisa.mp4?v=3#t=0.5" type="video/mp4" />
                 </video>
 
                 {/* Reel overlay UI */}

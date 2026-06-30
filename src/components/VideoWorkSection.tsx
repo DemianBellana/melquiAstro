@@ -16,6 +16,11 @@ interface IPhoneFrameProps {
 }
 
 const IPhoneFrame = ({ video, videos = [video], isActive, onClick, isMobile = false }: IPhoneFrameProps) => {
+  const getPosterPath = (videoPath: string) => {
+    if (!videoPath) return "";
+    return videoPath.replace('/work/', '/work/thumbnails/').replace('.mp4', '.jpg');
+  };
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const mouseXSpring = useSpring(x, { stiffness: 100, damping: 20 });
@@ -26,6 +31,7 @@ const IPhoneFrame = ({ video, videos = [video], isActive, onClick, isMobile = fa
   const frameRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [loadingVideo, setLoadingVideo] = useState(false);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [hovered, setHovered] = useState(false);
 
@@ -35,6 +41,7 @@ const IPhoneFrame = ({ video, videos = [video], isActive, onClick, isMobile = fa
     if (!isActive && videoRef.current) {
       videoRef.current.pause();
       setPlaying(false);
+      setLoadingVideo(false);
     }
   }, [isActive]);
 
@@ -43,16 +50,19 @@ const IPhoneFrame = ({ video, videos = [video], isActive, onClick, isMobile = fa
     const vid = videoRef.current;
     if (!vid) return;
     if (vid.paused) {
+      setLoadingVideo(true);
       vid.play()
         .then(() => {
-          setPlaying(true);
+          // El playing definitivo se maneja en onPlaying del video
         })
         .catch((err: any) => {
           console.warn("Video play interrupted:", err);
+          setLoadingVideo(false);
         });
     } else {
       vid.pause();
       setPlaying(false);
+      setLoadingVideo(false);
     }
     onClick();
   };
@@ -160,13 +170,30 @@ const IPhoneFrame = ({ video, videos = [video], isActive, onClick, isMobile = fa
                   ref={videoRef}
                   onLoadedMetadata={(e) => {
                     if (isActive) {
+                      setLoadingVideo(true);
                       e.currentTarget.play()
-                        .then(() => setPlaying(true))
-                        .catch((err: any) => console.warn("Video play interrupted:", err));
+                        .then(() => {})
+                        .catch((err: any) => {
+                          console.warn("Video play interrupted:", err);
+                          setLoadingVideo(false);
+                        });
                     }
                   }}
+                  onWaiting={() => setLoadingVideo(true)}
+                  onPlaying={() => {
+                    setLoadingVideo(false);
+                    setPlaying(true);
+                  }}
+                  onPause={() => {
+                    setPlaying(false);
+                    setLoadingVideo(false);
+                  }}
+                  onSeeking={() => setLoadingVideo(true)}
+                  onSeeked={() => setLoadingVideo(false)}
                   loop
                   muted={false}
+                  preload={isActive ? "auto" : "none"}
+                  poster={getPosterPath(currentVideo)}
                   playsInline
                   style={{
                     width: '100%',
@@ -176,16 +203,16 @@ const IPhoneFrame = ({ video, videos = [video], isActive, onClick, isMobile = fa
                     backgroundColor: '#000'
                   }}
                 >
-                  <source src={currentVideo} type="video/mp4" />
-                  <source src={currentVideo} type="video/quicktime" />
+                  <source src={`${currentVideo}?v=3#t=0.5`} type="video/mp4" />
+                  <source src={`${currentVideo}?v=3#t=0.5`} type="video/quicktime" />
                 </video>
               </motion.div>
             </AnimatePresence>
-
+ 
             {/* Play/Pause overlay */}
             <motion.div
               initial={{ opacity: 1 }}
-              animate={{ opacity: playing ? 0 : 1 }}
+              animate={{ opacity: (playing && !loadingVideo) ? 0 : 1 }}
               transition={{ duration: 0.2 }}
               style={{
                 position: 'absolute',
@@ -193,7 +220,7 @@ const IPhoneFrame = ({ video, videos = [video], isActive, onClick, isMobile = fa
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: playing ? 'transparent' : 'rgba(0,0,0,0.25)',
+                background: (playing && !loadingVideo) ? 'transparent' : 'rgba(0,0,0,0.25)',
                 pointerEvents: 'none',
                 zIndex: 10,
               }}
@@ -210,10 +237,13 @@ const IPhoneFrame = ({ video, videos = [video], isActive, onClick, isMobile = fa
                   boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
                 }}
               >
-                {/* Play triangle */}
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#111">
-                  <polygon points="5,3 19,12 5,21" />
-                </svg>
+                {loadingVideo ? (
+                  <div className="w-6 h-6 border-2 border-black/20 border-t-black rounded-full animate-spin" />
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#111">
+                    <polygon points="5,3 19,12 5,21" />
+                  </svg>
+                )}
               </div>
             </motion.div>
 
@@ -432,13 +462,13 @@ const VideoWorkSection = () => {
       name: 'Social Media', 
       desc: 'Contenido optimizado para redes sociales.',  
       video: '/assets/video/work/social_media_1.mp4',
-      videos: ['/assets/video/work/social_media_1.mp4', '/assets/video/work/social_media_2.mov'] 
+      videos: ['/assets/video/work/social_media_1.mp4', '/assets/video/work/social_media_2.mp4'] 
     },
     { 
       name: 'Talking Head', 
       desc: 'Entrevistas y contenido directo a cámara.',   
       video: '/assets/video/work/talking_head_1.mp4',
-      videos: ['/assets/video/work/talking_head_1.mp4', '/assets/video/work/talking_head_2.mov']
+      videos: ['/assets/video/work/talking_head_1.mp4', '/assets/video/work/talking_head_2.mp4']
     },
     { 
       name: 'Drone',        
@@ -449,8 +479,8 @@ const VideoWorkSection = () => {
     { 
       name: 'Events',       
       desc: 'Cobertura y edición de eventos en vivo.',     
-      video: '/assets/video/work/event_1.mov',
-      videos: ['/assets/video/work/event_1.mov', '/assets/video/work/event_2.mov']
+      video: '/assets/video/work/event_1.mp4',
+      videos: ['/assets/video/work/event_1.mp4', '/assets/video/work/event_2.mp4']
     },
   ];
 

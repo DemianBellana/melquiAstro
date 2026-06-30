@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero.astro';
+import ReelsSection from '../components/ReelsSection';
+import VideoWorkSection from '../components/VideoWorkSection';
+import PhotographySection from '../components/PhotographySection';
+import About from '../components/About';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import SocialFloatingButtons from '../components/SocialFloatingButtons.astro';
+---
+
+<Layout>
+  <div class="min-h-screen">
+    <Navbar client:load />
+    <main>
+      <Hero />
+      <ReelsSection client:visible />
+      <VideoWorkSection client:visible />
+      <PhotographySection client:visible />
+      <About client:visible />
+      <Contact />
+    </main>
+    <Footer />
+    <WhatsAppButton />
+    <SocialFloatingButtons />
+  </div>
+</Layout>
