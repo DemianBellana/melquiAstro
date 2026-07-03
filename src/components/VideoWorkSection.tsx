@@ -467,8 +467,8 @@ const VideoWorkSection = () => {
     { 
       name: 'Talking Head', 
       desc: 'Entrevistas y contenido directo a cámara.',   
-      video: '/assets/video/work/talking_head_1.mp4',
-      videos: ['/assets/video/work/talking_head_1.mp4', '/assets/video/work/talking_head_2.mp4']
+      video: '/assets/video/work/talking_head_2.mp4',
+      videos: ['/assets/video/work/talking_head_2.mp4']
     },
     { 
       name: 'Drone',        

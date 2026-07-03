@@ -928,7 +928,7 @@ const PhotographySection = () => {
               {featuredPhotos.map((photo, i) => (
                 <div
                   key={i}
-                  className="polaroid-item absolute bg-white p-3 pb-8 border border-black/[0.03] cursor-pointer"
+                  className="polaroid-item absolute bg-white p-3 border border-black/[0.03] cursor-pointer"
                   data-orig-rot={photo.rotation}
                   style={{
                     top: photo.top,
@@ -966,14 +966,6 @@ const PhotographySection = () => {
                     />
                     <div className="absolute inset-0 bg-black/5 opacity-0 hover:opacity-100 transition-opacity" />
                   </div>
-
-                  {/* Label */}
-                  <p
-                    className="text-center mt-3 text-dark/70 text-[1.1rem] leading-none select-none font-medium"
-                    style={{ fontFamily: "'Caveat', cursive" }}
-                  >
-                    {photo.title}
-                  </p>
                 </div>
               ))}
             </div>
@@ -1077,8 +1069,8 @@ const PhotographySection = () => {
 
             {/* Center Active Card */}
             <div
-              className="mobile-polaroid-active absolute bg-white p-3 pb-8 shadow-[0_12px_28px_rgba(0,0,0,0.1)] border border-black/[0.03] z-20 cursor-pointer"
-              style={{ top: '6%', left: '14%', width: '72%', transform: 'rotate(2deg)' }}
+              className="mobile-polaroid-active absolute bg-white p-3 shadow-[0_12px_28px_rgba(0,0,0,0.1)] border border-black/[0.03] z-20 cursor-pointer"
+              style={{ top: '6%', left: '9%', width: '82%', transform: 'rotate(2deg)' }}
               onClick={() => setSelectedImageIndex(mobileIndex)}
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
@@ -1096,9 +1088,6 @@ const PhotographySection = () => {
                   <ChevronRight size={16} className="text-white bg-black/20 rounded-full p-0.5" />
                 </div>
               </div>
-              <p className="text-center mt-3 text-dark/70 text-[1.1rem] leading-none select-none font-medium" style={{ fontFamily: "'Caveat', cursive" }}>
-                {sliderItems.length > 0 && sliderItems[mobileIndex] ? sliderItems[mobileIndex].title : 'Cargando...'}
-              </p>
             </div>
 
             {/* Mobile decorative stamps */}
